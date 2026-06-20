@@ -1,117 +1,535 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ankit Kumar | Cybersecurity Portfolio</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Consolas,monospace;scroll-behavior:smooth}
-body{background:#000;color:#fff}
-#introScreen{position:fixed;inset:0;z-index:9999;background:#000}
-#introVideo{width:100%;height:100%;object-fit:contain;background:#000}
-#portfolio{display:none}
-#landingVideo,#bgVideo{position:fixed;inset:0;width:100%;height:100%;object-fit:cover}
-#landingVideo{z-index:-3}
-#bgVideo{z-index:-2;opacity:0;transition:1s}
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:-1}
-nav{position:fixed;top:0;width:100%;display:flex;justify-content:space-between;align-items:center;padding:15px 30px;background:rgba(0,0,0,.3);backdrop-filter:blur(8px);z-index:1000}
-.nav-links{display:flex;gap:20px;flex-wrap:wrap}
-.nav-links a{color:#00ff88;text-decoration:none}
-.logo{height:55px}
-section{min-height:100vh;padding:120px 50px}
-.hero{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
-h1{color:#00ff88}
-.card{background:rgba(255,255,255,.06);padding:20px;border:1px solid rgba(0,255,136,.3);border-radius:15px;margin:15px 0}
-@media(max-width:768px){section{padding:100px 20px}.logo{height:40px}.nav-links{font-size:12px}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ankit Kumar | Cybersecurity Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Consolas, monospace;
+            scroll-behavior: smooth;
+        }
+        body {
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        
+        /* Intro Loader Screen */
+        #introScreen {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease;
+        }
+        #introVideo {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* Portfolio Wrapper */
+        #portfolio {
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+        
+        /* Video Background Overlays */
+        .video-bg {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.8s ease-in-out;
+            pointer-events: none;
+        }
+        #landingVideo { z-index: -3; opacity: 1; }
+        #bgVideo { z-index: -2; opacity: 0; }
+        
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.65);
+            z-index: -1;
+        }
+
+        /* Nav Header Layout */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 255, 136, 0.1);
+        }
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            color: #00ff88;
+            text-decoration: none;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: color 0.3s, text-shadow 0.3s;
+        }
+        .nav-links a:hover {
+            color: #ffffff;
+            text-shadow: 0 0 8px #00ff88;
+        }
+        .logo {
+            height: 50px;
+            object-fit: contain;
+        }
+
+        /* Grid Framework & Sections */
+        section {
+            min-height: 100vh;
+            padding: 140px 10% 60px 10%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .hero {
+            align-items: center;
+            text-align: center;
+        }
+        h1 {
+            color: #00ff88;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .hero h1 {
+            font-size: 4rem;
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+        }
+        h2 {
+            font-size: 1.5rem;
+            color: #888;
+            margin-bottom: 25px;
+        }
+        
+        .section-badge {
+            display: inline-block;
+            background: rgba(0, 255, 136, 0.15);
+            color: #00ff88;
+            padding: 6px 14px;
+            font-size: 13px;
+            border-radius: 4px;
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            margin-bottom: 30px;
+            align-self: flex-start;
+        }
+        .hero .section-badge { align-self: center; }
+
+        /* Multi-column Grid Framework */
+        .three-column-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            width: 100%;
+        }
+
+        /* Component Cards */
+        .card {
+            background: rgba(10, 10, 10, 0.8);
+            padding: 25px;
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-radius: 8px;
+            line-height: 1.6;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .clickable-card {
+            cursor: pointer;
+        }
+        .clickable-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(0, 255, 136, 0.6);
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.15);
+            background: rgba(0, 255, 136, 0.02);
+        }
+        .card h3 {
+            color: #00ff88;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        .card p {
+            color: #aaa;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        .read-more-btn {
+            color: #00ff88;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Certificate Styles */
+        .cert-thumb {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        .cert-thumb:hover {
+            transform: scale(1.02);
+            border-color: #00ff88;
+        }
+
+        /* Skills Circular Dot Badges */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        .skill-dot {
+            background: #0d0d0d;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 0 8px rgba(255,255,255,0.02);
+        }
+        .skill-dot:hover {
+            border-color: #00ff88;
+            color: #00ff88;
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Unified Modals Framework */
+        .modal {
+            display: none; 
+            position: fixed;
+            z-index: 10000;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.92);
+            backdrop-filter: blur(8px);
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            padding: 20px;
+        }
+        .modal-content-box {
+            background: #0a0a0a;
+            border: 1px solid #00ff88;
+            padding: 40px;
+            max-width: 750px;
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.2);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            line-height: 1.7;
+        }
+        .modal-content-box h2 {
+            color: #00ff88;
+            margin-bottom: 15px;
+        }
+        .modal-img-content {
+            max-width: 85%;
+            max-height: 85vh;
+            object-fit: contain;
+            border: 2px solid #00ff88;
+            border-radius: 6px;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        .modal.show { display: flex; opacity: 1; }
+        .modal.show .modal-content-box, 
+        .modal.show .modal-img-content { transform: scale(1); }
+        
+        .modal-close {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            color: #00ff88;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .modal-close:hover { color: #fff; }
+
+        /* Responsive Settings */
+        @media(max-width: 1024px) {
+            .three-column-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media(max-width: 768px) {
+            section { padding: 100px 20px 40px 20px; }
+            .three-column-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.5rem; }
+            .logo { height: 35px; }
+            .nav-links { gap: 15px; font-size: 11px; }
+            nav { padding: 15px 20px; }
+            .modal-content-box { padding: 25px; }
+        }
+    </style>
 </head>
 <body>
 
+<!-- Loader Screen -->
 <div id="introScreen">
-<video id="introVideo" autoplay muted playsinline>
-<source src="intro.mp4" type="video/mp4">
-</video>
+    <video id="introVideo" autoplay muted playsinline>
+        <source src="intro.mp4" type="video/mp4">
+    </video>
 </div>
 
+<!-- Core Dashboard Container -->
 <div id="portfolio">
-<video id="landingVideo" autoplay muted loop playsinline>
-<source src="landing.mp4" type="video/mp4">
-</video>
+    <video id="landingVideo" class="video-bg" autoplay muted loop playsinline>
+        <source src="landing.mp4" type="video/mp4">
+    </video>
+    <video id="bgVideo" class="video-bg" autoplay muted loop playsinline>
+        <source src="background.mp4" type="video/mp4">
+    </video>
+    <div class="overlay"></div>
 
-<video id="bgVideo" autoplay muted loop playsinline>
-<source src="background.mp4" type="video/mp4">
-</video>
+    <!-- Navigation Header -->
+    <nav>
+        <div class="nav-links">
+            <a href="#home">HOME</a>
+            <a href="#projects">PROJECTS</a>
+            <a href="#vulnerabilities">VULNERABILITIES</a>
+            <a href="#certificates">CERTIFICATES</a>
+            <a href="#skills">SKILLS</a>
+            <a href="#contact">CONTACT</a>
+        </div>
+        <img src="logo.png" class="logo" alt="Logo">
+    </nav>
 
-<div class="overlay"></div>
+    <!-- Hero Identity -->
+    <section id="home" class="hero">
+        <h1>ANKIT KUMAR</h1>
+        <h2>Cybersecurity Student | Tech & Code Enthusiast</h2>
+        <div class="section-badge">Securing Systems & Architecting Code</div>
+    </section>
 
-<nav>
-<div class="nav-links">
-<a href="#home">HOME</a>
-<a href="#about">ABOUT</a>
-<a href="#skills">SKILLS</a>
-<a href="#projects">PROJECTS</a>
-<a href="#vulnerabilities">VULNERABILITIES</a>
-<a href="#certificates">CERTIFICATES</a>
-<a href="#contact">CONTACT</a>
+    <!-- Page 1: Projects Section (Click to Enlarge Details) -->
+    <section id="projects">
+        <h1>PROJECTS</h1>
+        <div class="section-badge">Click any card to read detailed full technical specifications</div>
+        
+        <div class="three-column-grid">
+            <!-- Project 1 -->
+            <div class="card clickable-card" onclick="openTextModal('proj1')">
+                <h3>Automated Network Reconnaissance Tool</h3>
+                <p>Lightweight, CLI-based security utility using Python and Scapy to automate local network layer verification loops...</p>
+                <span class="read-more-btn">Analyze Architecture →</span>
+            </div>
+            <!-- Project 2 -->
+            <div class="card clickable-card" onclick="openTextModal('proj2')">
+                <h3>OWASP Top 10 Vulnerability Lab</h3>
+                <p>Controlled sandbox infrastructure deployed via container frameworks to document critical code-level web vulnerabilities...</p>
+                <span class="read-more-btn">Analyze Architecture →</span>
+            </div>
+            <!-- Project 3 -->
+            <div class="card clickable-card" onclick="openTextModal('proj3')">
+                <h3>Local Cryptographic Text Encryptor</h3>
+                <p>Desktop storage integrity module built utilizing advanced libraries ensuring localized encryption primitives...</p>
+                <span class="read-more-btn">Analyze Architecture →</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page 2: Vulnerability Research Section -->
+    <section id="vulnerabilities">
+        <h1>VULNERABILITY RESEARCH</h1>
+        <div class="section-badge">Responsible Disclosures & Ecosystem Audits</div>
+        
+        <div class="three-column-grid">
+            <div class="card">
+                <h3>0x01 Client-Side Integrity</h3>
+                <p>Analyzed reverse tabnabbing mechanics and evaluated execution risks associated with unvalidated window opening parameters on remote pages.</p>
+            </div>
+            <div class="card">
+                <h3>0x02 Header Infrastructure</h3>
+                <p>Documented structural deficiencies inside Content Security Policy (CSP) headers, emphasizing risks regarding arbitrary scripting execution scopes.</p>
+            </div>
+            <div class="card">
+                <h3>0x03 Resource Validation</h3>
+                <p>Evaluated asset sourcing vectors lacking Subresource Integrity (SRI) attributes, highlighting potential downstream supply-chain injection paths.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates Section (Click to Enlarge Image) -->
+    <section id="certificates">
+        <h1>CERTIFICATES</h1>
+        <div class="section-badge">Click certificate to inspect high-resolution verification original</div>
+        
+        <div class="three-column-grid">
+            <div class="card">
+                <h3>Advanced Defensive Operations</h3>
+                <p>Validation of proficiency regarding network security metrics.</p>
+                <img src="https://via.placeholder.com/300x200?text=Cert+1+Thumb" class="cert-thumb" alt="Certificate 1" data-full="https://via.placeholder.com/1200x800?text=Full+Size+Certificate+1+Verification">
+            </div>
+            <div class="card">
+                <h3>Offensive Security Frameworks</h3>
+                <p>Validation of hands-on vulnerability replication workflows.</p>
+                <img src="https://via.placeholder.com/300x200?text=Cert+2+Thumb" class="cert-thumb" alt="Certificate 2" data-full="https://via.placeholder.com/1200x800?text=Full+Size+Certificate+2+Verification">
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section (Black Dots Style) -->
+    <section id="skills">
+        <h1>SKILLS LEARNED</h1>
+        <div class="section-badge">Core Technological Proficiencies</div>
+        <div class="skills-container">
+            <div class="skill-dot">OWASP Top 10</div>
+            <div class="skill-dot">Burp Suite Professional</div>
+            <div class="skill-dot">Nmap Network Auditing</div>
+            <div class="skill-dot">Wireshark Packet Analysis</div>
+            <div class="skill-dot">Python Engineering</div>
+            <div class="skill-dot">Bash Automation scripts</div>
+            <div class="skill-dot">Linux Security Kernels</div>
+            <div class="skill-dot">Secure Code Review</div>
+            <div class="skill-dot">Applied Cryptography</div>
+            <div class="skill-dot">Git Environment Control</div>
+        </div>
+    </section>
+
+    <!-- Contact Details -->
+    <section id="contact">
+        <h1>CONTACT</h1>
+        <div class="section-badge">Secure Communications Gateway</div>
+        <div class="card" style="max-width: 500px;">
+            <p><strong>Email:</strong> <a href="mailto:sverma98015@gmail.com" style="color:#00ff88;">sverma98015@gmail.com</a></p>
+            <p><strong>GitHub:</strong> <a href="https://github.com/sverma98015-commits" target="_blank" style="color:#00ff88;">sverma98015-commits</a></p>
+            <p style="margin-bottom: 0;"><strong>Phone:</strong> +91 7766099089</p>
+        </div>
+    </section>
 </div>
-<img src="logo.png" class="logo">
-</nav>
 
-<section id="home" class="hero">
-<h1 style="font-size:60px">ANKIT KUMAR</h1>
-<h2>Cybersecurity Student | Tech & Code Enthusiast</h2>
-<p style="max-width:800px;margin-top:20px">Focused on cybersecurity research, vulnerability assessment, secure software development and practical security testing.</p>
-</section>
+<!-- Full Text Details Modal Window -->
+<div id="textModal" class="modal">
+    <span class="modal-close" onclick="closeAllModals()">&times;</span>
+    <div class="modal-content-box">
+        <h2 id="modalProjectTitle">Project Title</h2>
+        <p id="modalProjectDescription" style="color: #fff; font-size: 15px; white-space: pre-line;"></p>
+    </div>
+</div>
 
-<section id="about">
-<h1>ABOUT</h1>
-<div class="card">Cybersecurity student passionate about ethical hacking, web application security, Linux, Python automation and vulnerability research.</div>
-</section>
-
-<section id="skills">
-<h1>SKILLS</h1>
-<div class="card">OWASP Top 10 • Burp Suite • Nmap • Wireshark • Python • Bash • Linux • Secure Code Review • Cryptography • GitHub</div>
-</section>
-
-<section id="projects">
-<h1>PROJECTS</h1>
-<div class="card"><b>Automated Network Reconnaissance & Asset Mapping Tool</b><br>GitHub Link: ADD_LINK_HERE</div>
-<div class="card"><b>OWASP Top 10 Vulnerability Lab & Secure Code Patches</b><br>GitHub Link: ADD_LINK_HERE</div>
-<div class="card"><b>Local Cryptographic Text Encryptor & Hash Verifier</b><br>GitHub Link: ADD_LINK_HERE</div>
-</section>
-
-<section id="vulnerabilities">
-<h1>VULNERABILITY RESEARCH</h1>
-<div class="card">IITK Security Disclosure Report – Tabnabbing, CSP, SRI and input validation observations.</div>
-</section>
-
-<section id="certificates">
-<h1>CERTIFICATES</h1>
-<div class="card"><a href="cert1.pdf">Certificate 1</a></div>
-<div class="card"><a href="cert2.pdf">Certificate 2</a></div>
-</section>
-
-<section id="contact">
-<h1>CONTACT</h1>
-<div class="card">Email: sverma98015@gmail.com<br>GitHub: sverma98015-commits<br>Phone: 7766099089</div>
-</section>
+<!-- Full Image Lightbox Modal Window -->
+<div id="imgModal" class="modal">
+    <span class="modal-close" onclick="closeAllModals()">&times;</span>
+    <img class="modal-img-content" id="modalFullImage" alt="Enlarged Document Source">
 </div>
 
 <script>
-const intro=document.getElementById('introVideo');
-intro.addEventListener('ended',()=>{
-document.getElementById('introScreen').style.display='none';
-document.getElementById('portfolio').style.display='block';
-});
-window.addEventListener('scroll',()=>{
-if(window.scrollY>500){
-document.getElementById('landingVideo').style.opacity='0';
-document.getElementById('bgVideo').style.opacity='1';
-}else{
-document.getElementById('landingVideo').style.opacity='1';
-document.getElementById('bgVideo').style.opacity='0';
-}
-});
+    // Data registry keeping full descriptions hidden out of view until requested
+    const projectData = {
+        proj1: {
+            title: "Automated Network Reconnaissance & Asset Mapping Tool",
+            desc: "Developed a lightweight, CLI-based security utility using Python and Scapy to automate internal network discovery. The tool performs active ARP pinging to identify active hosts on a local subnet, executes basic TCP port scanning to flag open standard ports (e.g., HTTP, SSH, FTP), and outputs a structured log file mapping potential attack surfaces. Implemented multithreading to optimize scanning speed and clean error handling to handle dropped packets seamlessly. Hosted fully on GitHub with a comprehensive README detailing use cases and defensive network mitigation strategies."
+        },
+        proj2: {
+            title: "OWASP Top 10 Vulnerability Lab & Secure Code Patches",
+            desc: "Configured a local, controlled sandbox environment using Docker to analyze web application flaws. Documented successful, hands-on exploits for critical vulnerabilities including SQL Injection (SQLi) via manual payload injection, Cross-Site Scripting (XSS) to hijack simulated session tokens, and Insecure Direct Object References (IDOR) by manipulating URL parameters. For each successfully exploited flaw, wrote a detailed technical write-up containing the reproduction steps, impact assessment using CVSS metrics, and the exact source code remediation (patch) required to secure the application backend against the attack."
+        },
+        proj3: {
+            title: "Local Cryptographic Text Encryptor & Hash Verifier",
+            desc: "Built a desktop security application in Python utilizing the Cryptography library to implement secure file and message handling. The tool allows users to encrypt and decrypt sensitive textual data using symmetric key cryptography (AES-256 in CBC mode) with proper salting and initialization vectors. Additionally, integrated an automated SHA-256 Integrity Verification module that computes and matches cryptographic hashes of local files to detect unauthorized file tampering or data corruption. Source code structure follows proper cryptographic practices, avoiding hardcoded keys or weak random number generation."
+        }
+    };
+
+    // Asset hooks
+    const introScreen = document.getElementById('introScreen');
+    const introVideo = document.getElementById('introVideo');
+    const portfolio = document.getElementById('portfolio');
+    const textModal = document.getElementById('textModal');
+    const imgModal = document.getElementById('imgModal');
+
+    // Intro Sequencer
+    function revealPortfolio() {
+        introScreen.style.opacity = '0';
+        setTimeout(() => {
+            introScreen.style.display = 'none';
+            portfolio.style.display = 'block';
+            setTimeout(() => { portfolio.style.opacity = '1'; }, 50);
+        }, 500);
+    }
+    introVideo.addEventListener('ended', revealPortfolio);
+    introVideo.addEventListener('error', revealPortfolio);
+    setTimeout(() => { if (portfolio.style.display !== 'block') revealPortfolio(); }, 4500);
+
+    // Background Scroll Engine
+    window.addEventListener('scroll', () => {
+        const landingVideo = document.getElementById('landingVideo');
+        const bgVideo = document.getElementById('bgVideo');
+        if (window.scrollY > 400) {
+            landingVideo.style.opacity = '0';
+            bgVideo.style.opacity = '1';
+        } else {
+            landingVideo.style.opacity = '1';
+            bgVideo.style.opacity = '0';
+        }
+    });
+
+    // Modals Control Engine
+    function openTextModal(projectId) {
+        document.getElementById('modalProjectTitle').innerText = projectData[projectId].title;
+        document.getElementById('modalProjectDescription').innerText = projectData[projectId].desc;
+        textModal.style.display = 'flex';
+        setTimeout(() => { textModal.classList.add('show'); }, 10);
+    }
+
+    // Connect image clicks to lightbox engine
+    document.querySelectorAll('.cert-thumb').forEach(thumb => {
+        thumb.addEventListener('click', function() {
+            document.getElementById('modalFullImage').src = this.getAttribute('data-full');
+            imgModal.style.display = 'flex';
+            setTimeout(() => { imgModal.classList.add('show'); }, 10);
+        });
+    });
+
+    function closeAllModals() {
+        textModal.classList.remove('show');
+        imgModal.classList.remove('show');
+        setTimeout(() => {
+            textModal.style.display = 'none';
+            imgModal.style.display = 'none';
+            document.getElementById('modalFullImage').src = '';
+        }, 300);
+    }
+
+    // Modal Background Clicks Close View
+    window.addEventListener('click', (e) => {
+        if (e.target === textModal || e.target === imgModal) closeAllModals();
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeAllModals();
+    });
 </script>
 </body>
 </html>
