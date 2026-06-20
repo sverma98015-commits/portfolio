@@ -1,1 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Ankit Kumar | Cybersecurity Portfolio</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Consolas,monospace;
+scroll-behavior:smooth;
+}
+
+body{
+background:#000;
+overflow:hidden;
+color:white;
+}
+
+/* INTRO */
+
+#introScreen{
+position:fixed;
+inset:0;
+z-index:9999;
+background:black;
+}
+
+#introVideo{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+/* LOADER */
+
+#loaderArea{
+position:absolute;
+left:60%;
+top:22%;
+width:min(18vw,250px);
+display:none;
+z-index:10000;
+}
+
+.loaderBox{
+width:100%;
+height:12px;
+border:1px solid #00ff88;
+border-radius:20px;
+overflow:hidden;
+background:rgba(0,40,0,.35);
+}
+
+#loaderFill{
+width:0%;
+height:100%;
+background:linear-gradient(
+90deg,
+#003300,
+#006622,
+#00aa44,
+#00ff88
+);
+}
+
+#loadingText{
+text-align:center;
+margin-top:8px;
+color:#00aa44;
+font-size:clamp(12px,1vw,18px);
+font-weight:bold;
+text-shadow:
+0 0 5px #00aa44,
+0 0 10px #00aa44,
+0 0 20px #00aa44;
+}
+
+/* PORTFOLIO */
+
+#portfolio{
+position:fixed;
+inset:0;
+display:none;
+overflow-y:auto;
+}
+
+#bgVideo{
+position:fixed;
+inset:0;
+width:100%;
+height:100%;
+object-fit:cover;
+z-index:-2;
+}
+
+.overlay{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.55);
+z-index:-1;
+}
+
+/* NAVBAR */
+
+nav{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+padding:20px 40px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(0,0,0,.25);
+backdrop-filter:blur(10px);
+z-index:1000;
+}
+
+.nav-links{
+display:flex;
+gap:25px;
+flex-wrap:wrap;
+}
+
+.nav-links a{
+color:#00ff88;
+text-decoration:none;
+font-weight:bold;
+}
+
+.nav-links a:hover{
+text-shadow:0 0 10px #00ff88;
+}
+
+.logo{
+height:60px;
+}
+
+/* HERO */
+
+.hero{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+}
+
+.hero h1{
+font-size:clamp(40px,6vw,80px);
+color:#00ff88;
+}
+
+.hero h2{
+margin-top:15px;
+font-size:clamp(16px,2vw,28px);
+}
+
+.hero p{
+margin-top:20px;
+max-width:800px;
+line-height:1.7;
+font-size:18px;
+}
+
+.btns{
+margin-top:30px;
+display:flex;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.btn{
+padding:12px 24px;
+border:1px solid #00ff88;
+color:#00ff88;
+text-decoration:none;
+border-radius:10px;
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(10px);
+}
+
+.btn:hover{
+box-shadow:0 0 20px #00ff88;
+}
+
+@media(max-width:768px){
+
+nav{
+padding:15px;
+}
+
+.nav-links{
+gap:12px;
+font-size:12px;
+}
+
+.logo{
+height:45px;
+}
+
+#loaderArea{
+left:50%;
+transform:translateX(-50%);
+top:20%;
+width:220px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- INTRO -->
+
+<div id="introScreen">
+
+<video
+id="introVideo"
+autoplay
+muted
+playsinline>
+
+<source src="intro.mp4" type="video/mp4">
+
+</video>
+
+<div id="loaderArea">
+
+<div class="loaderBox">
+<div id="loaderFill"></div>
+</div>
+
+<div id="loadingText">
+Loading
+</div>
+
+</div>
+
+</div>
+
+<!-- PORTFOLIO -->
+
+<div id="portfolio">
+
+<video
+id="bgVideo"
+autoplay
+muted
+loop
+playsinline>
+
+<source src="background.mp4" type="video/mp4">
+
+</video>
+
+<div class="overlay"></div>
+
+<nav>
+
+<div class="nav-links">
+
+<a href="#">HOME</a>
+<a href="#">ABOUT</a>
+<a href="#">SKILLS</a>
+<a href="#">PROJECTS</a>
+<a href="#">VULNERABILITIES</a>
+<a href="#">CERTIFICATES</a>
+<a href="#">CONTACT</a>
+
+</div>
+
+<img src="logo.png" class="logo">
+
+</nav>
+
+<section class="hero">
+
+<h1>ANKIT KUMAR</h1>
+
+<h2>
+Cybersecurity Student | Tech & Code Enthusiast
+</h2>
+
+<p>
+Focused on cybersecurity research,
+vulnerability assessment,
+secure software development,
+and practical security testing.
+</p>
+
+<div class="btns">
+
+<a href="#" class="btn">
+View Projects
+</a>
+
+<a href="#" class="btn">
+Vulnerability Research
+</a>
+
+</div>
+
+</section>
+
+</div>
+
+<script>
+
+/* LOADER */
+
+setTimeout(()=>{
+
+document.getElementById("loaderArea")
+.style.display="block";
+
+let progress=0;
+
+const fill=
+document.getElementById("loaderFill");
+
+const timer=setInterval(()=>{
+
+progress++;
+
+fill.style.width=
+progress+"%";
+
+if(progress>=100){
+clearInterval(timer);
+}
+
+},15);
+
+},5500);
+
+/* LOADING TEXT */
+
+let dots=0;
+
+setInterval(()=>{
+
+dots=(dots+1)%4;
+
+document.getElementById(
+"loadingText"
+).textContent=
+"Loading"+".".repeat(dots);
+
+},400);
+
+/* TRANSITION */
+
+const intro=
+document.getElementById("introVideo");
+
+intro.addEventListener("ended",()=>{
+
+document.getElementById(
+"introScreen"
+).style.display="none";
+
+document.getElementById(
+"portfolio"
+).style.display="block";
+
+document.body.style.overflow="auto";
+
+});
+
+</script>
+
+</body>
+</html>
