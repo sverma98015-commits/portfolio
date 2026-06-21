@@ -240,69 +240,48 @@
             border-color: #00ff88;
         }
 
-        /* Skills Interactive Image Layout Configurations */
+        /* Skills Matrix Section - Transparent & Neon-glow updates */
         .skills-matrix {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 24px;
             width: 100%;
             margin-top: 5px;
         }
         .skills-row {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
-            gap: 20px;
+            gap: 24px;
             width: 100%;
         }
         .skill-tile {
             position: relative;
-            aspect-ratio: 4 / 3;
-            background: #0a0a0a;
-            border-radius: 10px;
-            border: 1px solid rgba(0, 255, 136, 0.3);
-            overflow: hidden;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .skill-tile:hover {
-            border-color: #00ff88;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 255, 136, 0.15);
-        }
-        .skill-tile img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-        .skill-tile:hover img {
-            transform: scale(1.05);
-        }
-        
-        /* Description Overlay (Triggered on hover/touch - clean text, no names) */
-        .skill-overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.92);
+            aspect-ratio: 1 / 1; /* Squarish layout fit for icons */
+            background: transparent; /* Seamless video transparency */
+            border: 1px solid transparent; /* Hidden initialization barrier */
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 15px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            text-align: center;
-            pointer-events: none;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
-        .skill-tile:hover .skill-overlay,
-        .skill-tile:active .skill-overlay {
-            opacity: 1;
+        .skill-tile img {
+            width: 85%;
+            height: 85%;
+            object-fit: contain;
+            filter: drop-shadow(0 0 2px rgba(0,255,136,0.1));
+            transition: all 0.4s ease;
         }
-        .skill-overlay p {
-            color: #00ff88;
-            font-size: 12px;
-            line-height: 1.5;
-            margin: 0;
-            font-weight: bold;
+        
+        /* Neon green glow, zoom, and brightness enhancement track */
+        .skill-tile:hover {
+            transform: scale(1.12);
+            border-radius: 12px;
+            border: 1px solid rgba(0, 255, 136, 0.8);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.6), inset 0 0 10px rgba(0, 255, 136, 0.2);
+        }
+        .skill-tile:hover img {
+            filter: drop-shadow(0 0 8px rgba(0, 255, 136, 0.8)) brightness(1.2);
         }
 
         /* Unified Layout Popup Modals */
@@ -333,11 +312,27 @@
             max-height: 90vh;
             overflow-y: auto;
         }
+        
+        /* Distinctly sized micro-modal container explicitly configured for Skills */
+        .modal-content-box.skill-size {
+            max-width: 480px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 0 35px rgba(0, 255, 136, 0.35);
+        }
+        
         .modal-content-box h2 {
             color: #00ff88;
             font-size: 1.6rem;
             margin-bottom: 12px;
         }
+        .modal-content-box.skill-size h2 {
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+            border-bottom: 1px solid rgba(0, 255, 136, 0.2);
+            padding-bottom: 8px;
+        }
+        
         .modal-action-btn {
             display: inline-block;
             background: #00ff88;
@@ -396,7 +391,7 @@
             .nav-links{font-size:12px; gap: 15px;}
             .three-column-grid { grid-template-columns: 1fr; }
             .hero h1 { font-size: 38px; }
-            .skills-row { grid-template-columns: repeat(2, 1fr); }
+            .skills-row { grid-template-columns: repeat(3, 1fr); gap: 15px; }
         }
     </style>
 </head>
@@ -506,76 +501,43 @@
 
     <section id="skills">
         <h1>SKILLS LEARNED</h1>
-        <div class="section-badge">Hover or tap tiles to view technical overview tracks</div>
+        <div class="section-badge">Select any terminal module to initialize target description readout</div>
         <div class="skills-matrix">
             <div class="skills-row">
-                <div class="skill-tile">
-                    <img src="s1.png" alt="S1 Framework">
-                    <div class="skill-overlay">
-                        <p>Identification, exploitation, and secure source remediation of critical web infrastructure vulnerabilities tracking OWASP Top 10 guidelines.</p>
-                    </div>
+                <div class="skill-tile" onclick="openSkillModal('s1')">
+                    <img src="s1.png" alt="S1 Icon">
                 </div>
-                <div class="skill-tile">
-                    <img src="s2.png" alt="S2 Framework">
-                    <div class="skill-overlay">
-                        <p>Intercepting HTTP/S request chains, automating parameter intrusion, and scanning web endpoint boundaries using Burp Suite proxy ecosystems.</p>
-                    </div>
+                <div class="skill-tile" onclick="openSkillModal('s2')">
+                    <img src="s2.png" alt="S2 Icon">
                 </div>
-                <div class="skill-tile">
-                    <img src="s3.png" alt="S3 Framework">
-                    <div class="skill-overlay">
-                        <p>Executing active layer discovery loops, network topology trace tracking, and mapping accessible asset ports utilizing custom Nmap commands.</p>
-                    </div>
+                <div class="skill-tile" onclick="openSkillModal('s3')">
+                    <img src="s3.png" alt="S3 Icon">
                 </div>
-                <div class="skill-tile">
-                    <img src="s4.png" alt="S4 Framework">
-                    <div class="skill-overlay">
-                        <p>Conducting deep packet frame captures, investigating interface handshakes, and isolating anomalous telemetry payloads via Wireshark hooks.</p>
-                    </div>
+                <div class="skill-tile" onclick="openSkillModal('s4')">
+                    <img src="s4.png" alt="S4 Icon">
                 </div>
-                <div class="skill-tile">
-                    <img src="s5.png" alt="S5 Framework">
-                    <div class="skill-overlay">
-                        <p>Managing hardened UNIX server environments, configuring directory access control trees, and standardizing security tasks natively inside terminal environments.</p>
-                    </div>
+                <div class="skill-tile" onclick="openSkillModal('s5')">
+                    <img src="s5.png" alt="S5 Icon">
                 </div>
-                <div class="skill-tile">
-                    <img src="s6.png" alt="S6 Framework">
-                    <div class="skill-overlay">
-                        <p>Architecting defensive script systems, implementing socket connections, and compiling modular multi-threaded network tooling loops using Python.</p>
-                    </div>
+                <div class="skill-tile" onclick="openSkillModal('s6')">
+                    <img src="s6.png" alt="S6 Icon">
                 </div>
             </div>
             <div class="skills-row">
-                <div class="skill-tile">
-                    <img src="s7.png" alt="S7 Framework">
-                    <div class="skill-overlay">
-                        <p>Engineering customized automation pipelines, streaming console data pipelines, and structuring administrative execution paths using Bash scripts.</p>
-                    </div>
+                <div class="skill-tile" onclick="openSkillModal('s7')">
+                    <img src="s7.png" alt="S7 Icon">
                 </div>
-                <div class="skill-tile">
-                    <img src="s8.png" alt="S8 Framework">
-                    <div class="skill-overlay">
-                        <p>Performing logic flow assessments, finding programmatic injection points, and enforcing secure code designs prior to system compilation tracks.</p>
-                    </div>
+                <div class="skill-tile" onclick="openSkillModal('s8')">
+                    <img src="s8.png" alt="S8 Icon">
                 </div>
-                <div class="skill-tile">
-                    <img src="s9.png" alt="S9 Framework">
-                    <div class="skill-overlay">
-                        <p>Applying modern symmetric/asymmetric cryptographic primitives, generating salting chains, and deploying SHA integrity block validations.</p>
-                    </div>
+                <div class="skill-tile" onclick="openSkillModal('s9')">
+                    <img src="s9.png" alt="S9 Icon">
                 </div>
-                <div class="skill-tile">
-                    <img src="s10.png" alt="S10 Framework">
-                    <div class="skill-overlay">
-                        <p>Maintaining source architecture state integrity, monitoring secure tag releases, and establishing protected branch push protocols inside GitHub.</p>
-                    </div>
+                <div class="skill-tile" onclick="openSkillModal('s10')">
+                    <img src="s10.png" alt="S10 Icon">
                 </div>
-                <div class="skill-tile">
-                    <img src="s11.png" alt="S11 Framework">
-                    <div class="skill-overlay">
-                        <p>Conducting systematic attack-surface evaluations, mapping unpatched configurations, and drafting structured remediation roadmaps across environments.</p>
-                    </div>
+                <div class="skill-tile" onclick="openSkillModal('s11')">
+                    <img src="s11.png" alt="S11 Icon">
                 </div>
                 <div style="visibility: hidden;"></div>
             </div>
@@ -595,7 +557,7 @@
 
 <div id="detailsModal" class="modal">
     <span class="modal-close" onclick="closeAllModals()">&times;</span>
-    <div class="modal-content-box">
+    <div id="modalBox" class="modal-content-box">
         <h2 id="modalTitle">Header</h2>
         <div id="modalMeta"></div>
         <p id="modalDescription" style="color: #fff; font-size: 15px; white-space: pre-line; margin-top: 15px;"></p>
@@ -655,9 +617,25 @@
         }
     };
 
+    // Skills Short Description Registry
+    const skillRegistry = {
+        s1: { title: "OWASP Top 10", desc: "Expertise in analyzing, exploiting, and providing programmatic source code remediation parameters for standard web application threat vectors." },
+        s2: { title: "Burp Suite", desc: "Proficient in manipulating proxy traffic sequences, interception analytics, fuzzing configurations, and application boundary mapping." },
+        s3: { title: "Nmap", desc: "Advanced asset discovery deployment targeting complex subnets, port status parsing, engine scripting scripts, and service banners." },
+        s4: { title: "Wireshark", desc: "Isolating raw frame sequences, identifying packet manipulation signatures, data extraction tricks, and scanning handshakes." },
+        s5: { title: "Linux", desc: "System administration automation tracks, directory access layout protection policies, security scripting, and terminal engineering." },
+        s6: { title: "Python", desc: "Compiling standalone multithreaded network scanners, customized attack arrays, tool loops, and defensive security frameworks." },
+        s7: { title: "Bash", desc: "Writing efficient automation pipeline tools, terminal telemetry data stream utilities, and rapid scripting handlers." },
+        s8: { title: "Secure Code Review", desc: "Static logic parsing loops designed to detect code vulnerabilities and architectural flaws prior to build steps." },
+        s9: { title: "Cryptography", desc: "Deploying secure AES block algorithms, symmetric key management pipelines, salting processes, and file integrity check routines." },
+        s10: { title: "GitHub Control", desc: "Managing clean source repository structures, configuring branch protection loops, and automating commits securely." },
+        s11: { title: "Vulnerability Assessment", desc: "Systematic infrastructure footprint evaluations mapping threat models, patch logic validation, and architectural risk scoring." }
+    };
+
     const introVideo = document.getElementById('introVideo');
     const portfolio = document.getElementById('portfolio');
     const detailsModal = document.getElementById('detailsModal');
+    const modalBox = document.getElementById('modalBox');
     const imgLightbox = document.getElementById('imgLightbox');
 
     // Central Skip Handler
@@ -686,8 +664,9 @@
         }
     });
 
-    // Unified Modal Data Controller
+    // Main Modal Controller (Projects & Vulnerabilities)
     function openDetailsModal(id, type) {
+        modalBox.classList.remove('skill-size'); // Reset to standard size
         const record = informationRegistry[id];
         document.getElementById('modalTitle').innerText = record.title;
         document.getElementById('modalMeta').innerHTML = record.meta ? record.meta : '';
@@ -705,6 +684,20 @@
         }
 
         document.getElementById('modalInteractiveArea').innerHTML = interactiveHTML;
+        
+        detailsModal.style.display = 'flex';
+        setTimeout(() => { detailsModal.classList.add('show'); }, 10);
+    }
+
+    // Dedicated Micro-Modal Controller for Skill Descriptions
+    function openSkillModal(skillId) {
+        modalBox.classList.add('skill-size'); // Apply the compact container constraints
+        const skill = skillRegistry[skillId];
+        
+        document.getElementById('modalTitle').innerText = skill.title;
+        document.getElementById('modalMeta').innerHTML = '';
+        document.getElementById('modalDescription').innerText = skill.desc;
+        document.getElementById('modalInteractiveArea').innerHTML = ''; // Keep it clean & distraction free
         
         detailsModal.style.display = 'flex';
         setTimeout(() => { detailsModal.classList.add('show'); }, 10);
