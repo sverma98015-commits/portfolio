@@ -16,7 +16,7 @@
             background: #000;
             color: #fff;
             overflow-x: hidden;
-            font-size: 15px;
+            font-size: 15px; /* Clean, perfectly readable baseline */
         }
         
         /* Intro Screen Container */
@@ -93,95 +93,42 @@
             z-index: -1;
         }
 
-        /* Fixed Nav Header Layout */
-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-between; /* Keeps navigation items and logo anchored to opposite sides */
-    align-items: center;
-    padding: 10px 40px; /* Reduced vertical padding, generous side spacing */
-    background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    z-index: 1000;
-}
+        /* Nav Header Layout */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+        }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            color: #00ff88;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .nav-links a:hover {
+            color: #ffffff;
+            text-shadow: 0 0 8px #00ff88;
+        }
+        .logo {
+            height: 55px;
+        }
 
-/* Group container for the menu items to prevent them from breaking apart */
-.nav-links {
-    display: flex;
-    gap: 25px; /* Tightly controls the manual horizontal gap between navigation items */
-    align-items: center;
-}
-
-.nav-links a {
-    color: #00ff88;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 13px;
-    letter-spacing: 1px;
-    transition: color 0.2s ease, text-shadow 0.2s ease;
-}
-
-.nav-links a:hover {
-    color: #ffffff;
-    text-shadow: 0 0 10px #00ff88;
-}
-/* Add this right below your .nav-links a:hover block to fix the small logo issue */
-.logo {
-    height: 60px;       /* Forces the logo to be big and visible */
-    width: auto;        /* Keeps the aspect ratio perfectly balanced */
-    object-fit: contain;/* Prevents any image stretching or squeezing */
-    display: block;
-}
-
-/* Responsive fix to keep things tight on mobile phones */
-@media (max-width: 768px) {
-    nav {
-        padding: 10px 20px;
-    }
-    .logo {
-        height: 45px;   /* Slightly smaller logo on mobile so it fits nicely */
-    }
-    .nav-links {
-        gap: 12px;      /* Pulls the links closer together on mobile screens */
-    }
-    .nav-links a {
-        font-size: 11px;
-    }
-}
-/* Enforced explicit dimensions to stop the logo from shrinking down */
-.logo {
-    height: 65px; /* Boosted vertical size */
-    width: auto;  /* Maintains clean horizontal proportions automatically */
-    object-fit: contain;
-    display: block;
-}
-
-/* Responsive Overrides for Mobile devices */
-@media (max-width: 768px) {
-    nav {
-        padding: 10px 20px;
-        flex-direction: row; /* Keeps them on one horizontal strip if space permits */
-    }
-    .logo {
-        height: 50px; /* Perfectly scaled mobile presence */
-    }
-    .nav-links {
-        gap: 12px; /* Pulls links even closer on small screens to fit perfectly */
-    }
-    .nav-links a {
-        font-size: 11px;
-    }
-}
-
-        /* Section Spacing Layout */
+        /* Fixed Section Spacing: Balanced middle ground */
         section {
             min-height: 85vh;
-            padding: 80px 50px 60px 50px;
+            padding: 80px 50px 60px 50px; /* Comfortable breathing room without massive gaps */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -193,7 +140,7 @@ nav {
         }
         h1 {
             color: #00ff88;
-            font-size: 2.2rem;
+            font-size: 2.2rem; /* Cleaned up to be assertive but not giant */
             margin-bottom: 12px;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -208,6 +155,7 @@ nav {
             margin-bottom: 20px;
         }
         
+        /* Section Subheadings */
         .section-badge {
             display: inline-block;
             background: rgba(0, 255, 136, 0.15);
@@ -292,72 +240,48 @@ nav {
             border-color: #00ff88;
         }
 
-        /* Transparent Skill Graphic Tab Rulesets */
-     /* Tighten the Skills Section Container */
-/* Layout block wrapper centering */
-#skills {
-    padding-top: 100px; /* Gives perfect spacing below your certificates tab */
-    padding-bottom: 80px;
-    width: 100%;
-    max-width: 1100px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+        /* Visual Image Grid Components */
+        #skills {
+            align-items: center;
+        }
+        #skills h1 {
+            align-self: center;
+        }
+        #skills .section-badge {
+            align-self: center;
+            margin-bottom: 40px;
+        }
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 25px;
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+        .skill-img-btn {
+            background: none;
+            border: none;
+            padding: 0;
+            margin: 0;
+            cursor: pointer;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.2s ease;
+        }
+        .skill-img-btn:hover {
+            transform: scale(1.08);
+        }
+        .skill-img-btn img {
+            width: 100%;
+            height: auto;
+            max-height: 85px;
+            object-fit: contain;
+        }
 
-#skills h1 {
-    color: #ffffff;
-    font-size: 2.5rem;
-    text-align: center;
-    margin-bottom: 12px;
-    letter-spacing: 2px;
-}
-
-#skills .section-badge {
-    text-align: center;
-    margin-bottom: 45px;
-    color: #00ff88;
-    background: rgba(0, 255, 136, 0.05);
-    border: 1px solid rgba(0, 255, 136, 0.2);
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 14px;
-    display: inline-block;
-}
-
-/* Beautiful Grid for holding just the visual pill buttons */
-.skills-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 25px;
-    width: 100%;
-    padding: 10px;
-}
-
-.skill-img-btn {
-    background: none;
-    border: none;
-    padding: 0;
-    margin: 0;
-    cursor: pointer;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: transform 0.2s ease;
-}
-
-.skill-img-btn:hover {
-    transform: scale(1.05);
-}
-
-.skill-img-btn img {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    max-height: 85px;
-}
         /* Unified Layout Popup Modals */
         .modal {
             display: none; 
@@ -443,19 +367,22 @@ nav {
             z-index: 10001;
         }
 
+        @media(max-width: 992px) {
+            .skills-container { grid-template-columns: repeat(3, 1fr); }
+        }
+
         @media(max-width: 768px) {
             section{padding: 80px 20px 40px 20px;}
             .logo{height:40px;}
             .nav-links{font-size:12px; gap: 15px;}
             .three-column-grid { grid-template-columns: 1fr; }
             .hero h1 { font-size: 38px; }
-            .skills-container { grid-template-columns: 1fr 1fr; }
+            .skills-container { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
 <body>
 
-<!-- Intro Screen Loader Container -->
 <div id="introScreen">
     <button class="skip-btn" onclick="skipIntro()">SKIP INTRO ⤏</button>
     <video id="introVideo" autoplay muted playsinline>
@@ -463,7 +390,6 @@ nav {
     </video>
 </div>
 
-<!-- Main Portfolio Base Shell -->
 <div id="portfolio">
     <video id="landingVideo" class="video-bg" autoplay muted loop playsinline>
         <source src="landing.mp4" type="video/mp4">
@@ -492,7 +418,6 @@ nav {
         <p style="max-width:800px; margin-top:15px; font-size: 15px; color: #ccc;">Focused on cybersecurity research, vulnerability assessment, secure software development and practical security testing.</p>
     </section>
 
-    <!-- Projects Explorer Section -->
     <section id="projects">
         <h1>PROJECTS</h1>
         <div class="section-badge">Click card to expand complete deployment & source specifications</div>
@@ -516,7 +441,6 @@ nav {
         </div>
     </section>
 
-    <!-- Vulnerability Research Area -->
     <section id="vulnerabilities">
         <h1>VULNERABILITY RESEARCH</h1>
         <div class="section-badge">Click finding card to see technical logs, image proof, and official PDF report</div>
@@ -543,7 +467,6 @@ nav {
         </div>
     </section>
 
-    <!-- Certificates Grid Section -->
     <section id="certificates">
         <h1>CERTIFICATES</h1>
         <div class="section-badge">Official credentials validating defensive skillsets and infrastructure achievements</div>
@@ -562,67 +485,53 @@ nav {
         </div>
     </section>
 
-    <!-- Transparent Individual Images Skills Section -->
-  <div class="skills-container">
-    <button class="skill-img-btn" onclick="openDetailsModal('sk1', 'skill')"><img src="s1.png" alt="OWASP Top 10"></button>
-    <button class="skill-img-btn" onclick="openDetailsModal('sk2', 'skill')"><img src="s2.png" alt="Burp Suite"></button>
-    <button class="skill-img-btn" onclick="openDetailsModal('sk3', 'skill')"><img src="s3.png" alt="Nmap"></button>
-    <button class="skill-img-btn" onclick="openDetailsModal('sk4', 'skill')"><img src="s4.png" alt="Wireshark"></button>
-    <button class="skill-img-btn" onclick="openDetailsModal('sk5', 'skill')"><img src="s5.png" alt="Wireshark Analytics"></button>
-    <button class="skill-img-btn" onclick="openDetailsModal('sk6', 'skill')"><img src="s6.png" alt="Python Scripting"></button>
-    <button class="skill-img-btn" onclick="openDetailsModal('sk7', 'skill')"><img src="s7.png" alt="Bash Scripting"></button>
-    <button class="skill-img-btn" onclick="openDetailsModal('sk8', 'skill')"><img src="s8.png" alt="Linux OS"></button>
-    <button class="skill-img-btn" onclick="openDetailsModal('sk9', 'skill')"><img src="s9.png" alt="GitHub Operations"></button>
-    <button class="skill-img-btn" onclick="openDetailsModal('sk10', 'skill')"><img src="s10.png" alt="Secure Code Review"></button>
-    <button class="skill-img-btn" onclick="openDetailsModal('sk11', 'skill')"><img src="s11.png" alt="GitHub Repositories"></button>
-</div>
-  <section id="skills">
+    <section id="skills">
         <h1>SKILLS LEARNED</h1>
         <div class="section-badge">Click any image badge to review my technical knowledge and project implementations</div>
         
         <div class="skills-container">
             <button class="skill-img-btn" onclick="openDetailsModal('sk1', 'skill')">
-                <img src="s1.jpg" alt="OWASP Top 10">
+                <img src="s1.png" alt="OWASP Top 10">
             </button>
 
             <button class="skill-img-btn" onclick="openDetailsModal('sk2', 'skill')">
-                <img src="s2.jpg" alt="Burp Suite">
+                <img src="s2.png" alt="Burp Suite">
             </button>
 
             <button class="skill-img-btn" onclick="openDetailsModal('sk3', 'skill')">
-                <img src="s3.jpg" alt="Nmap">
+                <img src="s3.png" alt="Nmap">
             </button>
 
             <button class="skill-img-btn" onclick="openDetailsModal('sk4', 'skill')">
-                <img src="s4.jpg" alt="Wireshark">
+                <img src="s4.png" alt="Wireshark">
             </button>
 
             <button class="skill-img-btn" onclick="openDetailsModal('sk5', 'skill')">
-                <img src="s5.jpg" alt="Wireshark Analytics">
+                <img src="s5.png" alt="Linux OS">
             </button>
 
             <button class="skill-img-btn" onclick="openDetailsModal('sk6', 'skill')">
-                <img src="s6.jpg" alt="Python Scripting">
+                <img src="s6.png" alt="Python Scripting">
             </button>
 
             <button class="skill-img-btn" onclick="openDetailsModal('sk7', 'skill')">
-                <img src="s7.jpg" alt="Bash Scripting">
+                <img src="s7.png" alt="Bash Automation">
             </button>
 
             <button class="skill-img-btn" onclick="openDetailsModal('sk8', 'skill')">
-                <img src="s8.jpg" alt="Linux OS">
+                <img src="s8.png" alt="Secure Code Review">
             </button>
 
             <button class="skill-img-btn" onclick="openDetailsModal('sk9', 'skill')">
-                <img src="s9.jpg" alt="Secure Code Review">
+                <img src="s9.png" alt="Cryptography">
             </button>
 
             <button class="skill-img-btn" onclick="openDetailsModal('sk10', 'skill')">
-                <img src="s10.jpg" alt="GitHub Control">
+                <img src="s10.png" alt="GitHub Control">
             </button>
         </div>
     </section>
-    <!-- Contacts Footer Section -->
+
     <section id="contact">
         <h1>CONTACT</h1>
         <div class="section-badge">Secure Comms Trunk Gateway</div>
@@ -634,7 +543,6 @@ nav {
     </section>
 </div>
 
-<!-- Modal Framework Container -->
 <div id="detailsModal" class="modal">
     <span class="modal-close" onclick="closeAllModals()">&times;</span>
     <div class="modal-content-box">
@@ -645,14 +553,13 @@ nav {
     </div>
 </div>
 
-<!-- Lightbox Modal Container -->
 <div id="imgLightbox" class="modal">
     <span class="modal-close" onclick="closeLightbox()">&times;</span>
     <img class="modal-img-content" id="lightboxTargetImg" alt="Enlarged Document">
 </div>
 
 <script>
-    // System Registry Map Database - Houses original descriptions mapped to what you actually know
+    // System Registry Map Database Adding Skill Explanations
     const informationRegistry = {
         proj1: {
             title: "Automated Network Reconnaissance & Asset Mapping Tool",
@@ -668,7 +575,7 @@ nav {
         },
         proj3: {
             title: "Local Cryptographic Text Encryptor & Hash Verifier",
-            desc: "Built a desktop security application in Python utilizing the Cryptography library to implement secure file handling...",
+            desc: "Built a desktop security application in Python utilizing the Cryptography library to implement secure file and message handling...",
             linkText: "Inspect Cryptographic Source Tree →",
             url: "https://github.com/sverma98015-commits/crypto-text-encryptor"
         },
@@ -691,56 +598,21 @@ nav {
         vuln3: {
             title: "IITK Security Disclosure: Missing Subresource Integrity (SRI)",
             meta: "<span class='cvss-badge'>CVSS 6.5 (Medium)</span>",
-            desc: "Identified vital script resources loaded over remote Content Delivery Networks (CDNs) missing hashes...",
+            desc: "Identified vital script resources loaded over remote Content Delivery Networks (CDNs) missing accompanying cryptographic verification parameters...",
             proofImg: "sshot3.jpg",
             linkText: "Open Verified Disclosure Report (PDF) →",
             url: "pdf3.pdf"
         },
-        // Skills Descriptions mapping directly to your core project experience and Cisco cert loops
-        sk1: {
-            title: "OWASP Top 10 Knowledge",
-            desc: "Practical understanding of the most critical web application security risks. Proven directly through my Dockerized vulnerability lab project, where I manually reproduced and patched key vulnerabilities like SQL Injection, Cross-Site Scripting (XSS), and Broken Object Level Authentication (IDOR)."
-        },
-        sk2: {
-            title: "Burp Suite Proficiency",
-            desc: "Experienced with web application proxy fundamentals. Comfortable intercepts, examining baseline HTTP/S request/response structures, manipulating headers, modifying target parameters, and observing server side returns to trace logic flaws during penetration tests."
-        },
-        sk3: {
-            title: "Nmap Network Scanning",
-            desc: "Solid understanding of core network discovery operations. Knowledgeable on port states, service version detection flags, mapping alive assets inside local subnets, and interpreting scan scripts, which directly inspired my custom Python scanning script."
-        },
-        sk4: {
-            title: "Wireshark Packet Analysis (Network Basics Framework)",
-            desc: "Gained structural network insight via my Cisco Networking Basics credential. Capable of evaluating raw packet dumps, tracing handshakes, inspecting flags, and filtering packets to diagnose security drops or protocol behaviors."
-        },
-        sk5: {
-            title: "Advanced Network Traffic Monitoring (Wireshark)",
-            desc: "Applied deep inspection concepts to monitor layer-2 and layer-3 behaviors. Used to safely capture live socket configurations, track protocol conversations, and analyze payload payloads to flag unencrypted, plain-text transfers across testbeds."
-        },
-        sk6: {
-            title: "Python Scripting for Security",
-            desc: "My primary security engineering language. Hand-coded an Automated Reconnaissance asset mapper from scratch using Scapy, built custom automation tools, and utilized standard libraries to securely handle algorithmic text calculations."
-        },
-        sk7: {
-            title: "Bash Scripting & Automation",
-            desc: "Comfortable stringing automated tasks inside UNIX terminals. Able to build baseline shell workflows, pipe logs, process files efficiently, and initialize test environments automatically via command line variables."
-        },
-        sk8: {
-            title: "Linux System Administration & Architecture",
-            desc: "Strong system familiarity derived from deploying labs and utilities. Comfortable configuring files, organizing operational file privileges, managing package frameworks, and deploying lightweight isolated container applications."
-        },
-        sk9: {
-            title: "GitHub Version Control (Repository Maintenance)",
-            desc: "Maintaining structural code integrity across all 3 key security projects. Proficient tracking commit nodes, managing repository versions, documentation design, and organizing clear distribution frameworks."
-        },
-        sk10: {
-            title: "Secure Code Review Practices",
-            desc: "Focuses on identifying vulnerabilities at the code level. Able to scan logic frameworks, trace manual user input flows to check for missing sanitization loops, and implement hard code fixes as seen in my remediation work with the OWASP playground project."
-        },
-        sk11: {
-            title: "GitHub Security Pipelines & Operations",
-            desc: "Utilizing version branches to systematically stage cryptographic code features, structure secure releases, and isolate utility builds away from experimental infrastructure testing trees."
-        }
+        sk1: { title: "OWASP Top 10", desc: "Proficient in auditing and mitigating critical web vulnerabilities identified under the global OWASP standard frameworks." },
+        sk2: { title: "Burp Suite", desc: "Experienced using intercepting proxies to trace requests, inject custom payloads, and audit web business logic flows manually." },
+        sk3: { title: "Nmap Discovery", desc: "Advanced asset identification scanning, mapping port status boundaries, and performing fingerprinting infrastructure auditing." },
+        sk4: { title: "Wireshark Essentials", desc: "Capturing protocol packets live to break down headers, identify handshakes, and debug connection infrastructure layers." },
+        sk5: { title: "Linux OS Environment", desc: "System administration, access control permissions configurations, core package compiling, and terminal infrastructure management." },
+        sk6: { title: "Python Utility Scripting", desc: "Writing object-oriented programmatic tools, automated threat analysis parsers, and custom API integrations." },
+        sk7: { title: "Bash Automation", desc: "Building system-level scripting wrappers to run recursive execution blocks and schedule periodic cron utilities." },
+        sk8: { title: "Secure Code Review", desc: "Manual analysis of programmatic repositories to discover missing input sanitization loops and static validation bypasses." },
+        sk9: { title: "Symmetric & Asymmetric Cryptography", desc: "Implementation of data-at-rest encryption primitives using AES-256 blocks, proper initialization vector tracking, and hashing flags." },
+        sk10: { title: "GitHub Control", desc: "Managing clean source tree branches, coordinating collaborative tracking, and performing cryptographically signed commits records." }
     };
 
     const introVideo = document.getElementById('introVideo');
@@ -748,6 +620,7 @@ nav {
     const detailsModal = document.getElementById('detailsModal');
     const imgLightbox = document.getElementById('imgLightbox');
 
+    // Central Skip Handler
     function skipIntro() {
         introVideo.pause();
         document.getElementById('introScreen').style.opacity = '0';
@@ -760,6 +633,7 @@ nav {
 
     introVideo.addEventListener('ended', skipIntro);
 
+    // Background transition handler
     window.addEventListener('scroll', () => {
         const landingVideo = document.getElementById('landingVideo');
         const bgVideo = document.getElementById('bgVideo');
@@ -772,26 +646,32 @@ nav {
         }
     });
 
+    // Unified Modal Data Controller
     function openDetailsModal(id, type) {
         const record = informationRegistry[id];
+        if (!record) return;
         document.getElementById('modalTitle').innerText = record.title;
         document.getElementById('modalMeta').innerHTML = record.meta ? record.meta : '';
         document.getElementById('modalDescription').innerText = record.desc;
         
         let interactiveHTML = '';
+        
         if (type === 'vulnerability' && record.proofImg) {
             interactiveHTML += `<p style='color:#00ff88; margin-top:15px; font-weight:bold;'>[+] Visual Evidence / PoC Screenshot:</p>
                                 <img src="${record.proofImg}" class="modal-proof-img" onclick="openLightbox('${record.proofImg}')" alt="Exploit Proof Snapshot">`;
         }
+        
         if (record.url && record.linkText) {
             interactiveHTML += `<br><a href="${record.url}" target="_blank" class="modal-action-btn">${record.linkText}</a>`;
         }
+
         document.getElementById('modalInteractiveArea').innerHTML = interactiveHTML;
         
         detailsModal.style.display = 'flex';
         setTimeout(() => { detailsModal.classList.add('show'); }, 10);
     }
 
+    // Lightbox Functionality
     function openLightbox(imgSrc) {
         document.getElementById('lightboxTargetImg').src = imgSrc;
         imgLightbox.style.display = 'flex';
@@ -817,6 +697,12 @@ nav {
     window.addEventListener('click', (e) => {
         if (e.target === detailsModal) closeAllModals();
         if (e.target === imgLightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeAllModals();
+            closeLightbox();
+        }
     });
 </script>
 </body>
