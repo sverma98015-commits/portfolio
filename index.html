@@ -238,37 +238,39 @@
             transform: scale(1.02);
             border-color: #00ff88;
         }
-
-        /* Pure Image Graphic Grid System */
+/* Pure Image Graphic Grid System */
         .skills-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 20px;
+            /* Forces exactly 6 columns */
+            grid-template-columns: repeat(6, 1fr);
+            gap: 15px;
             margin-top: 5px;
             width: 100%;
         }
+        
         .skill-img-btn {
             background: none;
             border: none;
             padding: 0;
             cursor: pointer;
-            width: 100%;
+            width: 100%; /* Fills the grid cell */
             transition: transform 0.2s ease, filter 0.2s ease;
             display: flex;
             justify-content: center;
             align-items: center;
         }
+
         .skill-img-btn img {
             width: 100%;
-            max-width: 260px;
+            max-width: 120px; /* Adjusted for 6-per-row layout */
             height: auto;
             object-fit: contain;
         }
+        
         .skill-img-btn:hover {
             transform: scale(1.06);
             filter: drop-shadow(0 0 10px rgba(0, 255, 136, 0.6));
         }
-
         /* Unified Layout Popup Modals */
         .modal {
             display: none; 
