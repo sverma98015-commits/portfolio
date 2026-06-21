@@ -412,12 +412,12 @@
             <div class="card">
                 <h3>Advanced Defensive Operations</h3>
                 <p>Validation of proficiency regarding network mapping algorithms.</p>
-                <img src="cert1.png" class="cert-thumb" alt="Certificate 1" data-full="cert1.png">
+                <img src="cert1_thumb.jpg" class="cert-thumb" alt="Certificate 1" data-full="cert1.jpg">
             </div>
             <div class="card">
                 <h3>Offensive Security Frameworks</h3>
                 <p>Validation of practical exploit engineering mitigation steps.</p>
-                <img src="cert2.png" class="cert-thumb" alt="Certificate 2" data-full="cert2.png">
+                <img src="cert2_thumb.jpg" class="cert-thumb" alt="Certificate 2" data-full="cert2.JPG">
             </div>
         </div>
     </section>
@@ -472,7 +472,7 @@
             title: "Automated Network Reconnaissance & Asset Mapping Tool",
             desc: "Developed a lightweight, CLI-based security utility using Python and Scapy to automate internal network discovery. The tool performs active ARP pinging to identify active hosts on a local subnet, executes basic TCP port scanning to flag open standard ports (e.g., HTTP, SSH, FTP), and outputs a structured log file mapping potential attack surfaces. Implemented multithreading to optimize scanning speed and clean error handling to handle dropped packets seamlessly. Hosted fully on GitHub with a comprehensive README detailing use cases and defensive network mitigation strategies.",
             linkText: "View Live Repository on GitHub →",
-            // FIXED: Your updated project link is added below
+            // FIX 3: Updated repository path to match your exact request
             url: "https://github.com/sverma98015-commits/Automated-Network-Reconnaissance-Asset-Mapping-Tool" 
         },
         proj2: {
@@ -491,23 +491,23 @@
             title: "IITK Security Disclosure: Reverse Tabnabbing Vulnerability",
             meta: "<span class='cvss-badge'>CVSS 6.1 (Medium)</span>",
             desc: "Identified client-side isolation vulnerabilities inside peripheral navigation components. The absence of strict protective configurations allowed child tabs to access parent object pointers via window.opener manipulation, mapping potential session takeover risks.\n\nClick the evidence image snippet below to view it at full uploaded scale.",
-            proofImg: "tabnabbing_proof.jpg", 
+            proofImg: "cert1.jpg", 
             linkText: "Open Verified Disclosure Report (PDF) →",
-            url: "certificate 1.pdf" // Updated to match actual filename in root folder
+            url: "certificate 1.pdf" 
         },
         vuln2: {
             title: "IITK Security Disclosure: Content Security Policy Flaws",
             meta: "<span class='cvss-badge'>CVSS 7.5 (High)</span>",
             desc: "Mapped missing security vectors inside server response rules. Broad configurations within current boundaries failed to cleanly restrict unsafe-inline script parameters, introducing high risks for arbitrary cross-site layout tampering scripts.\n\nClick the evidence image snippet below to view it at full uploaded scale.",
-            proofImg: "csp_proof.jpg",
+            proofImg: "cert2.JPG",
             linkText: "Open Verified Disclosure Report (PDF) →",
-            url: "certificate 2.pdf" // Updated to match actual filename in root folder
+            url: "certificate 2.pdf"
         },
         vuln3: {
             title: "IITK Security Disclosure: Missing Subresource Integrity (SRI)",
             meta: "<span class='cvss-badge'>CVSS 6.5 (Medium)</span>",
             desc: "Identified vital script resources loaded over remote Content Delivery Networks (CDNs) missing accompanying cryptographic verification parameters (SRI hashes). This oversight leaves the ecosystem exposed to third-party script exploitation and supply-chain tampering routes.\n\nClick the evidence image snippet below to view it at full uploaded scale.",
-            proofImg: "sri_proof.jpg",
+            proofImg: "cert1.jpg",
             linkText: "Open Verified Disclosure Report (PDF) →",
             url: "certificate 1.pdf"
         }
