@@ -16,9 +16,10 @@
             background: #000;
             color: #fff;
             overflow-x: hidden;
+            font-size: 16px; /* Slightly bumped up base font */
         }
         
-        /* Intro Screen - Full Restore */
+        /* Intro Screen Container */
         #introScreen {
             position: fixed;
             inset: 0;
@@ -34,6 +35,35 @@
             height: 100%;
             object-fit: contain;
             background: #000;
+        }
+
+        /* Glassmorphism Skip Button */
+        .skip-btn {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            color: #bbb;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 10000;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+        .skip-btn:hover {
+            color: #00ff88;
+            border-color: rgba(0, 255, 136, 0.6);
+            background: rgba(0, 255, 136, 0.04);
+            text-shadow: 0 0 8px #00ff88;
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
+            transform: translateY(-2px);
         }
 
         /* Portfolio Wrapper */
@@ -78,13 +108,14 @@
         }
         .nav-links {
             display: flex;
-            gap: 20px;
+            gap: 24px;
             flex-wrap: wrap;
         }
         .nav-links a {
             color: #00ff88;
             text-decoration: none;
             font-weight: bold;
+            font-size: 15px;
         }
         .nav-links a:hover {
             color: #ffffff;
@@ -94,31 +125,34 @@
             height: 55px;
         }
 
-        /* Section Spacing Tighter Fixes */
+        /* Section Layout and Tighter Gaps Fixes */
         section {
-            min-height: 100vh;
-            padding: 70px 50px 30px 50px; 
+            min-height: auto;
+            padding: 45px 50px 15px 50px; /* Reduced padding gaps significantly */
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
         .hero {
+            min-height: 100vh;
             align-items: center;
             text-align: center;
+            padding-top: 100px;
         }
         h1 {
             color: #00ff88;
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+            font-size: 2.8rem; /* Made slightly larger */
+            margin-bottom: 8px;
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
         .hero h1 {
-            font-size: 60px;
-            margin-bottom: 5px;
+            font-size: 68px;
+            margin-bottom: 8px;
         }
         h2 {
-            font-size: 1.5rem;
-            color: #888;
+            font-size: 1.7rem; /* Made slightly larger */
+            color: #aaa;
             margin-bottom: 20px;
         }
         
@@ -127,16 +161,16 @@
             display: inline-block;
             background: rgba(0, 255, 136, 0.15);
             color: #00ff88;
-            padding: 6px 14px;
-            font-size: 13px;
+            padding: 8px 16px;
+            font-size: 14px; /* Made slightly larger */
             border-radius: 4px;
             border: 1px solid rgba(0, 255, 136, 0.3);
-            margin-bottom: 20px;
+            margin-bottom: 18px;
             align-self: flex-start;
         }
         .hero .section-badge { align-self: center; }
 
-        /* Multi-column Grid Purple Layout Setup */
+        /* Multi-column Grid Layout Setup */
         .three-column-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -147,10 +181,10 @@
         /* Cards Layout */
         .card {
             background: rgba(255, 255, 255, 0.06);
-            padding: 20px;
+            padding: 24px;
             border: 1px solid rgba(0, 255, 136, 0.3);
             border-radius: 15px;
-            margin: 10px 0;
+            margin: 5px 0;
             line-height: 1.6;
             transition: transform 0.3s, border-color 0.3s;
             display: flex;
@@ -167,34 +201,35 @@
         }
         .card h3 {
             color: #00ff88;
-            margin-bottom: 10px;
+            font-size: 1.3rem; /* Enhanced visibility */
+            margin-bottom: 12px;
         }
         .card p {
-            color: #aaa;
-            font-size: 14px;
+            color: #ccc; /* Slightly brighter readability */
+            font-size: 15px; /* Increased font size */
             margin-bottom: 15px;
         }
         .read-more-btn {
             color: #00ff88;
-            font-size: 13px;
+            font-size: 14px;
             font-weight: bold;
         }
         .cvss-badge {
             background: rgba(255, 77, 77, 0.2);
             color: #ff4d4d;
-            padding: 2px 8px;
+            padding: 4px 10px;
             border-radius: 4px;
-            font-size: 12px;
+            font-size: 13px;
             border: 1px solid rgba(255,77,77,0.3);
             display: inline-block;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             width: fit-content;
         }
 
         /* Image Rendering Setup */
         .cert-thumb {
             width: 100%;
-            height: 160px;
+            height: 170px;
             object-fit: cover;
             border: 1px solid rgba(0, 255, 136, 0.3);
             border-radius: 4px;
@@ -217,10 +252,10 @@
         .skill-dot {
             background: #0d0d0d;
             color: #fff;
-            padding: 12px 24px;
+            padding: 14px 26px;
             border-radius: 50px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 14px;
+            font-size: 15px;
         }
         .skill-dot:hover {
             border-color: #00ff88;
@@ -257,17 +292,19 @@
         }
         .modal-content-box h2 {
             color: #00ff88;
+            font-size: 1.8rem;
             margin-bottom: 15px;
         }
         .modal-action-btn {
             display: inline-block;
             background: #00ff88;
             color: #000;
-            padding: 10px 20px;
+            padding: 12px 24px;
             text-decoration: none;
             font-weight: bold;
             border-radius: 6px;
             margin-top: 20px;
+            font-size: 15px;
             transition: background 0.3s;
         }
         .modal-action-btn:hover {
@@ -276,7 +313,7 @@
         }
         .modal-proof-img {
             width: 100%;
-            max-height: 250px;
+            max-height: 280px;
             object-fit: cover;
             border: 1px solid rgba(0,255,136,0.3);
             border-radius: 6px;
@@ -304,24 +341,26 @@
             top: 30px;
             right: 40px;
             color: #00ff88;
-            font-size: 40px;
+            font-size: 44px;
             font-weight: bold;
             cursor: pointer;
             z-index: 10001;
         }
 
-        @media(max-width: 768px){
-            section{padding: 80px 20px 20px 20px;}
+        @media(max-width: 768px) {
+            section{padding: 60px 20px 15px 20px;}
             .logo{height:40px;}
-            .nav-links{font-size:12px;}
+            .nav-links{font-size:13px; gap: 15px;}
             .three-column-grid { grid-template-columns: 1fr; }
-            .hero h1 { font-size: 40px; }
+            .hero h1 { font-size: 42px; }
+            .skip-btn { top: 20px; right: 20px; padding: 10px 18px; font-size: 12px; }
         }
     </style>
 </head>
 <body>
 
 <div id="introScreen">
+    <button class="skip-btn" onclick="skipIntro()">SKIP INTRO ⤏</button>
     <video id="introVideo" autoplay muted playsinline>
         <source src="intro.mp4" type="video/mp4">
     </video>
@@ -352,7 +391,7 @@
         <h1>ANKIT KUMAR</h1>
         <h2>Cybersecurity Student | Tech & Code Enthusiast</h2>
         <div class="section-badge">Securing Systems & Architecting Code</div>
-        <p style="max-width:800px;margin-top:20px">Focused on cybersecurity research, vulnerability assessment, secure software development and practical security testing.</p>
+        <p style="max-width:850px; margin-top:20px; font-size: 17px; color: #ddd;">Focused on cybersecurity research, vulnerability assessment, secure software development and practical security testing.</p>
     </section>
 
     <section id="projects">
@@ -406,18 +445,18 @@
 
     <section id="certificates">
         <h1>CERTIFICATES</h1>
-        <div class="section-badge">Click asset block to execute full-resolution document inspection overlay</div>
+        <div class="section-badge">Official credentials validating defensive skillsets and infrastructure achievements</div>
         
         <div class="three-column-grid">
             <div class="card">
-                <h3>Advanced Defensive Operations</h3>
-                <p>Validation of proficiency regarding network mapping algorithms.</p>
-                <img src="cert1_thumb.jpg" class="cert-thumb" alt="Certificate 1" data-full="cert1.jpg">
+                <h3>Introduction to Cybersecurity</h3>
+                <p>Issued by Cisco Networking Academy. Verified completion and foundational grasp of global cyber threat landscapes, endpoint security parameters, cryptographic concepts, and essential data privacy compliance frameworks.</p>
+                <img src="cert1_thumb.jpg" class="cert-thumb" alt="Introduction to Cybersecurity" data-full="cert1.jpg">
             </div>
             <div class="card">
-                <h3>Offensive Security Frameworks</h3>
-                <p>Validation of practical exploit engineering mitigation steps.</p>
-                <img src="cert2_thumb.jpg" class="cert-thumb" alt="Certificate 2" data-full="cert2.JPG">
+                <h3>Networking Basics</h3>
+                <p>Issued by Cisco Networking Academy. Verified proficiency in foundational networking protocols, media configurations, subnet calculation loops, system physical connectivity layout designs, and routing/switching theory.</p>
+                <img src="cert2_thumb.jpg" class="cert-thumb" alt="Networking Basics" data-full="cert2.JPG">
             </div>
         </div>
     </section>
@@ -455,7 +494,7 @@
     <div class="modal-content-box">
         <h2 id="modalTitle">Header</h2>
         <div id="modalMeta"></div>
-        <p id="modalDescription" style="color: #fff; font-size: 15px; white-space: pre-line; margin-top: 15px;"></p>
+        <p id="modalDescription" style="color: #fff; font-size: 16px; white-space: pre-line; margin-top: 15px;"></p>
         <div id="modalInteractiveArea"></div>
     </div>
 </div>
@@ -466,13 +505,12 @@
 </div>
 
 <script>
-    // System Structural Registry Database Map
+    // System Registry Map Database
     const informationRegistry = {
         proj1: {
             title: "Automated Network Reconnaissance & Asset Mapping Tool",
             desc: "Developed a lightweight, CLI-based security utility using Python and Scapy to automate internal network discovery. The tool performs active ARP pinging to identify active hosts on a local subnet, executes basic TCP port scanning to flag open standard ports (e.g., HTTP, SSH, FTP), and outputs a structured log file mapping potential attack surfaces. Implemented multithreading to optimize scanning speed and clean error handling to handle dropped packets seamlessly. Hosted fully on GitHub with a comprehensive README detailing use cases and defensive network mitigation strategies.",
             linkText: "View Live Repository on GitHub →",
-            // FIX 3: Updated repository path to match your exact request
             url: "https://github.com/sverma98015-commits/Automated-Network-Reconnaissance-Asset-Mapping-Tool" 
         },
         proj2: {
@@ -490,26 +528,26 @@
         vuln1: {
             title: "IITK Security Disclosure: Reverse Tabnabbing Vulnerability",
             meta: "<span class='cvss-badge'>CVSS 6.1 (Medium)</span>",
-            desc: "Identified client-side isolation vulnerabilities inside peripheral navigation components. The absence of strict protective configurations allowed child tabs to access parent object pointers via window.opener manipulation, mapping potential session takeover risks.\n\nClick the evidence image snippet below to view it at full uploaded scale.",
-            proofImg: "cert1.jpg", 
+            desc: "Identified client-side isolation vulnerabilities inside peripheral navigation components. The absence of strict protective configurations allowed child tabs to access parent object pointers via window.opener manipulation, mapping potential session takeover risks.\n\nClick the evidence screenshot snippet below to view it at full scale.",
+            proofImg: "sshot1.jpg", 
             linkText: "Open Verified Disclosure Report (PDF) →",
-            url: "certificate 1.pdf" 
+            url: "pdf1.pdf" 
         },
         vuln2: {
             title: "IITK Security Disclosure: Content Security Policy Flaws",
             meta: "<span class='cvss-badge'>CVSS 7.5 (High)</span>",
-            desc: "Mapped missing security vectors inside server response rules. Broad configurations within current boundaries failed to cleanly restrict unsafe-inline script parameters, introducing high risks for arbitrary cross-site layout tampering scripts.\n\nClick the evidence image snippet below to view it at full uploaded scale.",
-            proofImg: "cert2.JPG",
+            desc: "Mapped missing security vectors inside server response rules. Broad configurations within current boundaries failed to cleanly restrict unsafe-inline script parameters, introducing high risks for arbitrary cross-site layout tampering scripts.\n\nClick the evidence screenshot snippet below to view it at full scale.",
+            proofImg: "sshot2.jpg",
             linkText: "Open Verified Disclosure Report (PDF) →",
-            url: "certificate 2.pdf"
+            url: "pdf2.pdf"
         },
         vuln3: {
             title: "IITK Security Disclosure: Missing Subresource Integrity (SRI)",
             meta: "<span class='cvss-badge'>CVSS 6.5 (Medium)</span>",
-            desc: "Identified vital script resources loaded over remote Content Delivery Networks (CDNs) missing accompanying cryptographic verification parameters (SRI hashes). This oversight leaves the ecosystem exposed to third-party script exploitation and supply-chain tampering routes.\n\nClick the evidence image snippet below to view it at full uploaded scale.",
-            proofImg: "cert1.jpg",
+            desc: "Identified vital script resources loaded over remote Content Delivery Networks (CDNs) missing accompanying cryptographic verification parameters (SRI hashes). This oversight leaves the ecosystem exposed to third-party script exploitation and supply-chain tampering routes.\n\nClick the evidence screenshot snippet below to view it at full scale.",
+            proofImg: "sshot3.jpg",
             linkText: "Open Verified Disclosure Report (PDF) →",
-            url: "certificate 1.pdf"
+            url: "pdf3.pdf"
         }
     };
 
@@ -518,14 +556,20 @@
     const detailsModal = document.getElementById('detailsModal');
     const imgLightbox = document.getElementById('imgLightbox');
 
-    // Intro Engine Event Management Structure
-    introVideo.addEventListener('ended', () => {
-        document.getElementById('introScreen').style.display = 'none';
-        portfolio.style.display = 'block';
-        setTimeout(() => { portfolio.style.opacity = '1'; }, 50);
-    });
+    // Central Skip Handler
+    function skipIntro() {
+        introVideo.pause();
+        document.getElementById('introScreen').style.opacity = '0';
+        setTimeout(() => {
+            document.getElementById('introScreen').style.display = 'none';
+            portfolio.style.display = 'block';
+            setTimeout(() => { portfolio.style.opacity = '1'; }, 50);
+        }, 500);
+    }
 
-    // Dynamic Scrolling Engine Management Setup
+    introVideo.addEventListener('ended', skipIntro);
+
+    // Background transition handler
     window.addEventListener('scroll', () => {
         const landingVideo = document.getElementById('landingVideo');
         const bgVideo = document.getElementById('bgVideo');
@@ -538,7 +582,7 @@
         }
     });
 
-    // Unified Data Modal Injection System
+    // Unified Modal Data Controller
     function openDetailsModal(id, type) {
         const record = informationRegistry[id];
         document.getElementById('modalTitle').innerText = record.title;
@@ -562,7 +606,7 @@
         setTimeout(() => { detailsModal.classList.add('show'); }, 10);
     }
 
-    // High-Resolution Lightbox Handlers
+    // Lightbox Functionality
     function openLightbox(imgSrc) {
         document.getElementById('lightboxTargetImg').src = imgSrc;
         imgLightbox.style.display = 'flex';
