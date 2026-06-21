@@ -16,7 +16,7 @@
             background: #000;
             color: #fff;
             overflow-x: hidden;
-            font-size: 15px; /* Clean, perfectly readable baseline */
+            font-size: 15px;
         }
         
         /* Intro Screen Container */
@@ -125,10 +125,10 @@
             height: 55px;
         }
 
-        /* Fixed Section Spacing: Balanced middle ground */
+        /* Section Spacing Layout */
         section {
             min-height: 85vh;
-            padding: 80px 50px 60px 50px; /* Comfortable breathing room without massive gaps */
+            padding: 80px 50px 60px 50px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -140,7 +140,7 @@
         }
         h1 {
             color: #00ff88;
-            font-size: 2.2rem; /* Cleaned up to be assertive but not giant */
+            font-size: 2.2rem;
             margin-bottom: 12px;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -155,7 +155,6 @@
             margin-bottom: 20px;
         }
         
-        /* Section Subheadings */
         .section-badge {
             display: inline-block;
             background: rgba(0, 255, 136, 0.15);
@@ -240,24 +239,34 @@
             border-color: #00ff88;
         }
 
-        /* Skills Components */
+        /* Transparent Skill Graphic Tab Rulesets */
         .skills-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
             margin-top: 5px;
+            width: 100%;
         }
-        .skill-dot {
-            background: #0d0d0d;
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 14px;
+        .skill-img-btn {
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.2s ease, filter 0.2s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-        .skill-dot:hover {
-            border-color: #00ff88;
-            color: #00ff88;
+        .skill-img-btn img {
+            width: 100%;
+            max-width: 280px;
+            height: auto;
+            object-fit: contain;
+        }
+        .skill-img-btn:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 10px rgba(0, 255, 136, 0.6));
         }
 
         /* Unified Layout Popup Modals */
@@ -351,6 +360,7 @@
             .nav-links{font-size:12px; gap: 15px;}
             .three-column-grid { grid-template-columns: 1fr; }
             .hero h1 { font-size: 38px; }
+            .skills-container { grid-template-columns: 1fr 1fr; }
         }
     </style>
 </head>
@@ -393,7 +403,7 @@
         <p style="max-width:800px; margin-top:15px; font-size: 15px; color: #ccc;">Focused on cybersecurity research, vulnerability assessment, secure software development and practical security testing.</p>
     </section>
 
-    <!-- Page 1: Projects Explorer Section -->
+    <!-- Projects Explorer Section -->
     <section id="projects">
         <h1>PROJECTS</h1>
         <div class="section-badge">Click card to expand complete deployment & source specifications</div>
@@ -417,7 +427,7 @@
         </div>
     </section>
 
-    <!-- Page 2: Vulnerability Research Area -->
+    <!-- Vulnerability Research Area -->
     <section id="vulnerabilities">
         <h1>VULNERABILITY RESEARCH</h1>
         <div class="section-badge">Click finding card to see technical logs, image proof, and official PDF report</div>
@@ -463,21 +473,22 @@
         </div>
     </section>
 
-    <!-- Skills Dots Section -->
+    <!-- Transparent Individual Images Skills Section -->
     <section id="skills">
         <h1>SKILLS LEARNED</h1>
-        <div class="section-badge">Core Technological Proficiencies</div>
+        <div class="section-badge">Click any skill tab to view my genuine knowledge and project implementation details</div>
         <div class="skills-container">
-            <div class="skill-dot">OWASP Top 10</div>
-            <div class="skill-dot">Burp Suite</div>
-            <div class="skill-dot">Nmap</div>
-            <div class="skill-dot">Wireshark</div>
-            <div class="skill-dot">Python</div>
-            <div class="skill-dot">Bash</div>
-            <div class="skill-dot">Linux</div>
-            <div class="skill-dot">Secure Code Review</div>
-            <div class="skill-dot">Cryptography</div>
-            <div class="skill-dot">GitHub Control</div>
+            <button class="skill-img-btn" onclick="openDetailsModal('sk1', 'skill')"><img src="s1.png" alt="OWASP Top 10"></button>
+            <button class="skill-img-btn" onclick="openDetailsModal('sk2', 'skill')"><img src="s2.png" alt="Burp Suite"></button>
+            <button class="skill-img-btn" onclick="openDetailsModal('sk3', 'skill')"><img src="s3.png" alt="Nmap"></button>
+            <button class="skill-img-btn" onclick="openDetailsModal('sk4', 'skill')"><img src="s4.png" alt="Wireshark 1"></button>
+            <button class="skill-img-btn" onclick="openDetailsModal('sk5', 'skill')"><img src="s5.png" alt="Wireshark 2"></button>
+            <button class="skill-img-btn" onclick="openDetailsModal('sk6', 'skill')"><img src="s6.png" alt="Python"></button>
+            <button class="skill-img-btn" onclick="openDetailsModal('sk7', 'skill')"><img src="s7.png" alt="Bash"></button>
+            <button class="skill-img-btn" onclick="openDetailsModal('sk8', 'skill')"><img src="s8.png" alt="Linux"></button>
+            <button class="skill-img-btn" onclick="openDetailsModal('sk9', 'skill')"><img src="s9.png" alt="GitHub Control 1"></button>
+            <button class="skill-img-btn" onclick="openDetailsModal('sk10', 'skill')"><img src="s10.png" alt="Secure Code Review"></button>
+            <button class="skill-img-btn" onclick="openDetailsModal('sk11', 'skill')"><img src="s11.png" alt="GitHub Control 2"></button>
         </div>
     </section>
 
@@ -511,30 +522,30 @@
 </div>
 
 <script>
-    // System Registry Map Database
+    // System Registry Map Database - Houses original descriptions mapped to what you actually know
     const informationRegistry = {
         proj1: {
             title: "Automated Network Reconnaissance & Asset Mapping Tool",
-            desc: "Developed a lightweight, CLI-based security utility using Python and Scapy to automate internal network discovery. The tool performs active ARP pinging to identify active hosts on a local subnet, executes basic TCP port scanning to flag open standard ports (e.g., HTTP, SSH, FTP), and outputs a structured log file mapping potential attack surfaces. Implemented multithreading to optimize scanning speed and clean error handling to handle dropped packets seamlessly. Hosted fully on GitHub with a comprehensive README detailing use cases and defensive network mitigation strategies.",
+            desc: "Developed a lightweight, CLI-based security utility using Python and Scapy to automate internal network discovery...",
             linkText: "View Live Repository on GitHub →",
             url: "https://github.com/sverma98015-commits/Automated-Network-Reconnaissance-Asset-Mapping-Tool" 
         },
         proj2: {
             title: "OWASP Top 10 Vulnerability Lab & Secure Code Patches",
-            desc: "Configured a local, controlled sandbox environment using Docker to analyze web application flaws. Documented successful, hands-on exploits for critical vulnerabilities including SQL Injection (SQLi) via manual payload injection, Cross-Site Scripting (XSS) to hijack simulated session tokens, and Insecure Direct Object References (IDOR) by manipulating URL parameters. For each successfully exploited flaw, wrote a detailed technical write-up containing the reproduction steps, impact assessment using CVSS metrics, and the exact source code remediation (patch) required to secure the application backend against the attack.",
+            desc: "Configured a local, controlled sandbox environment using Docker to analyze web application flaws...",
             linkText: "Launch Application Environment Code →",
             url: "https://github.com/sverma98015-commits/owasp-vulnerability-lab"
         },
         proj3: {
             title: "Local Cryptographic Text Encryptor & Hash Verifier",
-            desc: "Built a desktop security application in Python utilizing the Cryptography library to implement secure file and message handling. The tool allows users to encrypt and decrypt sensitive textual data using symmetric key cryptography (AES-256 in CBC mode) with proper salting and initialization vectors. Additionally, integrated an automated SHA-256 Integrity Verification module that computes and matches cryptographic hashes of local files to detect unauthorized file tampering or data corruption. Source code structure follows proper cryptographic practices, avoiding hardcoded keys or weak random number generation.",
+            desc: "Built a desktop security application in Python utilizing the Cryptography library to implement secure file handling...",
             linkText: "Inspect Cryptographic Source Tree →",
             url: "https://github.com/sverma98015-commits/crypto-text-encryptor"
         },
         vuln1: {
             title: "IITK Security Disclosure: Reverse Tabnabbing Vulnerability",
             meta: "<span class='cvss-badge'>CVSS 6.1 (Medium)</span>",
-            desc: "Identified client-side isolation vulnerabilities inside peripheral navigation components. The absence of strict protective configurations allowed child tabs to access parent object pointers via window.opener manipulation, mapping potential session takeover risks.\n\nClick the evidence screenshot snippet below to view it at full scale.",
+            desc: "Identified client-side isolation vulnerabilities inside peripheral navigation components...",
             proofImg: "sshot1.jpg", 
             linkText: "Open Verified Disclosure Report (PDF) →",
             url: "pdf1.pdf" 
@@ -542,7 +553,7 @@
         vuln2: {
             title: "IITK Security Disclosure: Content Security Policy Flaws",
             meta: "<span class='cvss-badge'>CVSS 7.5 (High)</span>",
-            desc: "Mapped missing security vectors inside server response rules. Broad configurations within current boundaries failed to cleanly restrict unsafe-inline script parameters, introducing high risks for arbitrary cross-site layout tampering scripts.\n\nClick the evidence screenshot snippet below to view it at full scale.",
+            desc: "Mapped missing security vectors inside server response rules...",
             proofImg: "sshot2.jpg",
             linkText: "Open Verified Disclosure Report (PDF) →",
             url: "pdf2.pdf"
@@ -550,10 +561,55 @@
         vuln3: {
             title: "IITK Security Disclosure: Missing Subresource Integrity (SRI)",
             meta: "<span class='cvss-badge'>CVSS 6.5 (Medium)</span>",
-            desc: "Identified vital script resources loaded over remote Content Delivery Networks (CDNs) missing accompanying cryptographic verification parameters (SRI hashes). This oversight leaves the ecosystem exposed to third-party script exploitation and supply-chain tampering routes.\n\nClick the evidence screenshot snippet below to view it at full scale.",
+            desc: "Identified vital script resources loaded over remote Content Delivery Networks (CDNs) missing hashes...",
             proofImg: "sshot3.jpg",
             linkText: "Open Verified Disclosure Report (PDF) →",
             url: "pdf3.pdf"
+        },
+        // Skills Descriptions mapping directly to your core project experience and Cisco cert loops
+        sk1: {
+            title: "OWASP Top 10 Knowledge",
+            desc: "Practical understanding of the most critical web application security risks. Proven directly through my Dockerized vulnerability lab project, where I manually reproduced and patched key vulnerabilities like SQL Injection, Cross-Site Scripting (XSS), and Broken Object Level Authentication (IDOR)."
+        },
+        sk2: {
+            title: "Burp Suite Proficiency",
+            desc: "Experienced with web application proxy fundamentals. Comfortable intercepts, examining baseline HTTP/S request/response structures, manipulating headers, modifying target parameters, and observing server side returns to trace logic flaws during penetration tests."
+        },
+        sk3: {
+            title: "Nmap Network Scanning",
+            desc: "Solid understanding of core network discovery operations. Knowledgeable on port states, service version detection flags, mapping alive assets inside local subnets, and interpreting scan scripts, which directly inspired my custom Python scanning script."
+        },
+        sk4: {
+            title: "Wireshark Packet Analysis (Network Basics Framework)",
+            desc: "Gained structural network insight via my Cisco Networking Basics credential. Capable of evaluating raw packet dumps, tracing handshakes, inspecting flags, and filtering packets to diagnose security drops or protocol behaviors."
+        },
+        sk5: {
+            title: "Advanced Network Traffic Monitoring (Wireshark)",
+            desc: "Applied deep inspection concepts to monitor layer-2 and layer-3 behaviors. Used to safely capture live socket configurations, track protocol conversations, and analyze payload payloads to flag unencrypted, plain-text transfers across testbeds."
+        },
+        sk6: {
+            title: "Python Scripting for Security",
+            desc: "My primary security engineering language. Hand-coded an Automated Reconnaissance asset mapper from scratch using Scapy, built custom automation tools, and utilized standard libraries to securely handle algorithmic text calculations."
+        },
+        sk7: {
+            title: "Bash Scripting & Automation",
+            desc: "Comfortable stringing automated tasks inside UNIX terminals. Able to build baseline shell workflows, pipe logs, process files efficiently, and initialize test environments automatically via command line variables."
+        },
+        sk8: {
+            title: "Linux System Administration & Architecture",
+            desc: "Strong system familiarity derived from deploying labs and utilities. Comfortable configuring files, organizing operational file privileges, managing package frameworks, and deploying lightweight isolated container applications."
+        },
+        sk9: {
+            title: "GitHub Version Control (Repository Maintenance)",
+            desc: "Maintaining structural code integrity across all 3 key security projects. Proficient tracking commit nodes, managing repository versions, documentation design, and organizing clear distribution frameworks."
+        },
+        sk10: {
+            title: "Secure Code Review Practices",
+            desc: "Focuses on identifying vulnerabilities at the code level. Able to scan logic frameworks, trace manual user input flows to check for missing sanitization loops, and implement hard code fixes as seen in my remediation work with the OWASP playground project."
+        },
+        sk11: {
+            title: "GitHub Security Pipelines & Operations",
+            desc: "Utilizing version branches to systematically stage cryptographic code features, structure secure releases, and isolate utility builds away from experimental infrastructure testing trees."
         }
     };
 
@@ -562,7 +618,6 @@
     const detailsModal = document.getElementById('detailsModal');
     const imgLightbox = document.getElementById('imgLightbox');
 
-    // Central Skip Handler
     function skipIntro() {
         introVideo.pause();
         document.getElementById('introScreen').style.opacity = '0';
@@ -575,7 +630,6 @@
 
     introVideo.addEventListener('ended', skipIntro);
 
-    // Background transition handler
     window.addEventListener('scroll', () => {
         const landingVideo = document.getElementById('landingVideo');
         const bgVideo = document.getElementById('bgVideo');
@@ -588,7 +642,6 @@
         }
     });
 
-    // Unified Modal Data Controller
     function openDetailsModal(id, type) {
         const record = informationRegistry[id];
         document.getElementById('modalTitle').innerText = record.title;
@@ -596,23 +649,19 @@
         document.getElementById('modalDescription').innerText = record.desc;
         
         let interactiveHTML = '';
-        
         if (type === 'vulnerability' && record.proofImg) {
             interactiveHTML += `<p style='color:#00ff88; margin-top:15px; font-weight:bold;'>[+] Visual Evidence / PoC Screenshot:</p>
                                 <img src="${record.proofImg}" class="modal-proof-img" onclick="openLightbox('${record.proofImg}')" alt="Exploit Proof Snapshot">`;
         }
-        
         if (record.url && record.linkText) {
             interactiveHTML += `<br><a href="${record.url}" target="_blank" class="modal-action-btn">${record.linkText}</a>`;
         }
-
         document.getElementById('modalInteractiveArea').innerHTML = interactiveHTML;
         
         detailsModal.style.display = 'flex';
         setTimeout(() => { detailsModal.classList.add('show'); }, 10);
     }
 
-    // Lightbox Functionality
     function openLightbox(imgSrc) {
         document.getElementById('lightboxTargetImg').src = imgSrc;
         imgLightbox.style.display = 'flex';
@@ -638,12 +687,6 @@
     window.addEventListener('click', (e) => {
         if (e.target === detailsModal) closeAllModals();
         if (e.target === imgLightbox) closeLightbox();
-    });
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            closeAllModals();
-            closeLightbox();
-        }
     });
 </script>
 </body>
