@@ -240,41 +240,76 @@
             border-color: #00ff88;
         }
 
-        /* Skills Matrix Layout Configurations */
+        /* Skills Interactive Image Layout Configurations */
         .skills-matrix {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 20px;
             width: 100%;
             margin-top: 5px;
         }
         .skills-row {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
-            gap: 16px;
+            gap: 20px;
             width: 100%;
         }
         .skill-tile {
-            background: rgba(255, 255, 255, 0.06);
-            color: #fff;
-            padding: 18px 10px;
+            position: relative;
+            aspect-ratio: 4 / 3;
+            background: #0a0a0a;
             border-radius: 10px;
             border: 1px solid rgba(0, 255, 136, 0.3);
-            font-size: 14px;
-            font-weight: bold;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            overflow: hidden;
+            cursor: pointer;
             transition: all 0.3s ease;
-            min-height: 55px;
         }
         .skill-tile:hover {
             border-color: #00ff88;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 255, 136, 0.15);
+        }
+        .skill-tile img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .skill-tile:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* Description Overlay Overlay (Triggered on hover/touch) */
+        .skill-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 12px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            text-align: center;
+            pointer-events: none; /* Allows click throughs to trigger parent events */
+        }
+        .skill-tile:hover .skill-overlay,
+        .skill-tile:active .skill-overlay {
+            opacity: 1;
+        }
+        .skill-overlay h4 {
             color: #00ff88;
-            background: rgba(0, 255, 136, 0.02);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 255, 136, 0.1);
+            font-size: 13px;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .skill-overlay p {
+            color: #e0e0e0;
+            font-size: 11px;
+            line-height: 1.4;
+            margin: 0;
         }
 
         /* Unified Layout Popup Modals */
@@ -478,23 +513,89 @@
 
     <section id="skills">
         <h1>SKILLS LEARNED</h1>
-        <div class="section-badge">Core Technological Proficiencies</div>
+        <div class="section-badge">Hover or tap tiles to reveal domain descriptions</div>
         <div class="skills-matrix">
             <div class="skills-row">
-                <div class="skill-tile">OWASP Top 10</div>
-                <div class="skill-tile">Burp Suite</div>
-                <div class="skill-tile">Nmap</div>
-                <div class="skill-tile">Wireshark</div>
-                <div class="skill-tile">Python</div>
-                <div class="skill-tile">Bash</div>
+                <div class="skill-tile">
+                    <img src="s1.jpg" alt="OWASP Top 10">
+                    <div class="skill-overlay">
+                        <h4>OWASP Top 10</h4>
+                        <p>Identification, exploitation, and code-level remediation of critical web application flaws.</p>
+                    </div>
+                </div>
+                <div class="skill-tile">
+                    <img src="s2.jpg" alt="Burp Suite">
+                    <div class="skill-overlay">
+                        <h4>Burp Suite</h4>
+                        <p>Interception, request manipulation, and testing of web app boundaries.</p>
+                    </div>
+                </div>
+                <div class="skill-tile">
+                    <img src="s3.jpg" alt="Nmap">
+                    <div class="skill-overlay">
+                        <h4>Nmap</h4>
+                        <p>Network discovery, active asset mapping, and infrastructure port scanning auditing.</p>
+                    </div>
+                </div>
+                <div class="skill-tile">
+                    <img src="s4.jpg" alt="Wireshark">
+                    <div class="skill-overlay">
+                        <h4>Wireshark</h4>
+                        <p>Deep packet analysis, threat isolation, and network communication protocol monitoring.</p>
+                    </div>
+                </div>
+                <div class="skill-tile">
+                    <img src="s5.jpg" alt="Linux">
+                    <div class="skill-overlay">
+                        <h4>Linux</h4>
+                        <p>Secure system administration, terminal environment automation, and privilege management.</p>
+                    </div>
+                </div>
+                <div class="skill-tile">
+                    <img src="s6.jpg" alt="Python">
+                    <div class="skill-overlay">
+                        <h4>Python</h4>
+                        <p>Developing lightweight offensive security scripts and robust local automation utilities.</p>
+                    </div>
+                </div>
             </div>
             <div class="skills-row">
-                <div class="skill-tile">Linux</div>
-                <div class="skill-tile">Secure Code Review</div>
-                <div class="skill-tile">Cryptography</div>
-                <div class="skill-tile">GitHub Control</div>
-                <div></div>
-                <div></div>
+                <div class="skill-tile">
+                    <img src="s7.jpg" alt="Bash">
+                    <div class="skill-overlay">
+                        <h4>Bash</h4>
+                        <p>Shell engineering for faster pipeline testing and terminal loop configuration.</p>
+                    </div>
+                </div>
+                <div class="skill-tile">
+                    <img src="s8.jpg" alt="Secure Code Review">
+                    <div class="skill-overlay">
+                        <h4>Secure Code Review</h4>
+                        <p>Static application scanning to intercept injection flaws before system deployment.</p>
+                    </div>
+                </div>
+                <div class="skill-tile">
+                    <img src="s9.jpg" alt="Cryptography">
+                    <div class="skill-overlay">
+                        <h4>Cryptography</h4>
+                        <p>Implementing symmetric AES encryption, salts, and SHA integrity check loops.</p>
+                    </div>
+                </div>
+                <div class="skill-tile">
+                    <img src="s10.jpg" alt="GitHub Control">
+                    <div class="skill-overlay">
+                        <h4>GitHub Control</h4>
+                        <p>Managing secure repository architecture, commits, and version history trees.</p>
+                    </div>
+                </div>
+                <div class="skill-tile">
+                    <img src="s11.jpg" alt="Vulnerability Assessment">
+                    <div class="skill-overlay">
+                        <h4>Vulnerability Assessment</h4>
+                        <p>Systematic assessment of attack surfaces to generate validation and patch trees.</p>
+                    </div>
+                </div>
+                <div style="visibility: hidden;"></div>
             </div>
         </div>
     </section>
