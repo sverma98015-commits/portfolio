@@ -1,608 +1,1215 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Ankit Kumar | Cybersecurity Portfolio</title>
+
     <style>
+
         * {
+
             margin: 0;
+
             padding: 0;
+
             box-sizing: border-box;
+
             font-family: Consolas, monospace;
+
             scroll-behavior: smooth;
+
         }
+
         body {
+
             background: #000;
+
             color: #fff;
+
             overflow-x: hidden;
+
         }
+
         
+
         /* Intro Screen - Full Restore */
+
         #introScreen {
+
             position: fixed;
+
             inset: 0;
+
             z-index: 9999;
+
             background: #000;
+
             display: flex;
+
             justify-content: center;
+
             align-items: center;
+
             transition: opacity 0.5s ease;
+
         }
+
         #introVideo {
+
             width: 100%;
+
             height: 100%;
+
             object-fit: contain;
+
             background: #000;
+
         }
+
+
 
         /* Portfolio Wrapper */
+
         #portfolio {
+
             display: none;
+
             opacity: 0;
+
             transition: opacity 1s ease;
+
         }
+
         
+
         /* Video Background Overlays */
+
         .video-bg {
+
             position: fixed;
+
             inset: 0;
+
             width: 100%;
+
             height: 100%;
+
             object-fit: cover;
+
             transition: opacity 0.8s ease-in-out;
+
             pointer-events: none;
+
         }
+
         #landingVideo { z-index: -3; opacity: 1; }
+
         #bgVideo { z-index: -2; opacity: 0; }
+
         
+
         .overlay {
+
             position: fixed;
+
             inset: 0;
+
             background: rgba(0, 0, 0, 0.65);
+
             z-index: -1;
+
         }
+
+
 
         /* Nav Header Layout */
+
         nav {
+
             position: fixed;
+
             top: 0;
+
             width: 100%;
+
             display: flex;
+
             justify-content: space-between;
+
             align-items: center;
+
             padding: 15px 30px;
+
             background: rgba(0, 0, 0, 0.3);
+
             backdrop-filter: blur(8px);
+
             z-index: 1000;
+
         }
+
         .nav-links {
+
             display: flex;
+
             gap: 20px;
+
             flex-wrap: wrap;
+
         }
+
         .nav-links a {
+
             color: #00ff88;
+
             text-decoration: none;
+
             font-weight: bold;
+
         }
+
         .nav-links a:hover {
+
             color: #ffffff;
+
             text-shadow: 0 0 8px #00ff88;
+
         }
+
         .logo {
+
             height: 55px;
+
         }
+
+
 
         /* Section Spacing Tighter Fixes */
+
         section {
+
             min-height: 100vh;
+
             padding: 70px 50px 30px 50px; /* Reduced top padding from 140px to eliminate huge gaps */
+
             display: flex;
+
             flex-direction: column;
+
             justify-content: center;
+
         }
+
         .hero {
+
             align-items: center;
+
             text-align: center;
+
         }
+
         h1 {
+
             color: #00ff88;
+
             font-size: 2.5rem;
+
             margin-bottom: 10px;
+
             text-transform: uppercase;
+
         }
+
         .hero h1 {
+
             font-size: 60px;
+
             margin-bottom: 5px;
+
         }
+
         h2 {
+
             font-size: 1.5rem;
+
             color: #888;
+
             margin-bottom: 20px;
+
         }
+
         
+
         /* Green Block Subheadings */
+
         .section-badge {
+
             display: inline-block;
+
             background: rgba(0, 255, 136, 0.15);
+
             color: #00ff88;
+
             padding: 6px 14px;
+
             font-size: 13px;
+
             border-radius: 4px;
+
             border: 1px solid rgba(0, 255, 136, 0.3);
+
             margin-bottom: 20px;
+
             align-self: flex-start;
+
         }
+
         .hero .section-badge { align-self: center; }
 
+
+
         /* Multi-column Grid Purple Layout Setup */
+
         .three-column-grid {
+
             display: grid;
+
             grid-template-columns: repeat(3, 1fr);
+
             gap: 20px;
+
             width: 100%;
+
         }
+
+
 
         /* Cards Layout */
+
         .card {
+
             background: rgba(255, 255, 255, 0.06);
+
             padding: 20px;
+
             border: 1px solid rgba(0, 255, 136, 0.3);
+
             border-radius: 15px;
+
             margin: 10px 0;
+
             line-height: 1.6;
+
             transition: transform 0.3s, border-color 0.3s;
+
             display: flex;
+
             flex-direction: column;
+
             justify-content: space-between;
+
         }
+
         .clickable-card {
+
             cursor: pointer;
+
         }
+
         .clickable-card:hover {
+
             transform: translateY(-4px);
+
             border-color: rgba(0, 255, 136, 0.8);
+
             background: rgba(0, 255, 136, 0.02);
+
         }
+
         .card h3 {
+
             color: #00ff88;
+
             margin-bottom: 10px;
+
         }
+
         .card p {
+
             color: #aaa;
+
             font-size: 14px;
+
             margin-bottom: 15px;
+
         }
+
         .read-more-btn {
+
             color: #00ff88;
+
             font-size: 13px;
+
             font-weight: bold;
+
         }
+
         .cvss-badge {
+
             background: rgba(255, 77, 77, 0.2);
+
             color: #ff4d4d;
+
             padding: 2px 8px;
+
             border-radius: 4px;
+
             font-size: 12px;
+
             border: 1px solid rgba(255,77,77,0.3);
+
             display: inline-block;
+
             margin-bottom: 10px;
+
             width: fit-content;
+
         }
+
+
 
         /* Image Rendering Setup */
+
         .cert-thumb {
+
             width: 100%;
+
             height: 160px;
+
             object-fit: cover;
+
             border: 1px solid rgba(0, 255, 136, 0.3);
+
             border-radius: 4px;
+
             cursor: pointer;
+
             transition: transform 0.3s, border-color 0.3s;
+
             margin-top: auto;
+
         }
+
         .cert-thumb:hover {
+
             transform: scale(1.02);
+
             border-color: #00ff88;
+
         }
+
+
 
         /* Skills Components */
+
         .skills-container {
+
             display: flex;
+
             flex-wrap: wrap;
+
             gap: 15px;
+
             margin-top: 10px;
+
         }
+
         .skill-dot {
+
             background: #0d0d0d;
+
             color: #fff;
+
             padding: 12px 24px;
+
             border-radius: 50px;
+
             border: 1px solid rgba(255, 255, 255, 0.1);
+
             font-size: 14px;
+
         }
+
         .skill-dot:hover {
+
             border-color: #00ff88;
+
             color: #00ff88;
+
         }
+
+
 
         /* Unified Layout Popup Modals */
+
         .modal {
+
             display: none; 
+
             position: fixed;
+
             z-index: 10000;
+
             inset: 0;
+
             background-color: rgba(0, 0, 0, 0.94);
+
             backdrop-filter: blur(8px);
+
             justify-content: center;
+
             align-items: center;
+
             opacity: 0;
+
             transition: opacity 0.3s ease;
+
             padding: 20px;
+
         }
+
         .modal-content-box {
+
             background: #0a0a0a;
+
             border: 1px solid #00ff88;
+
             padding: 40px;
+
             max-width: 800px;
+
             width: 100%;
+
             border-radius: 12px;
+
             box-shadow: 0 0 30px rgba(0, 255, 136, 0.2);
+
             transform: scale(0.9);
+
             transition: transform 0.3s ease;
+
             line-height: 1.7;
+
             max-height: 90vh;
+
             overflow-y: auto;
+
         }
+
         .modal-content-box h2 {
+
             color: #00ff88;
+
             margin-bottom: 15px;
+
         }
+
         .modal-action-btn {
+
             display: inline-block;
+
             background: #00ff88;
+
             color: #000;
+
             padding: 10px 20px;
+
             text-decoration: none;
+
             font-weight: bold;
+
             border-radius: 6px;
+
             margin-top: 20px;
+
             transition: background 0.3s;
+
         }
+
         .modal-action-btn:hover {
+
             background: #fff;
+
             box-shadow: 0 0 15px #00ff88;
+
         }
+
         .modal-proof-img {
+
             width: 100%;
+
             max-height: 250px;
+
             object-fit: cover;
+
             border: 1px solid rgba(0,255,136,0.3);
+
             border-radius: 6px;
+
             margin-top: 15px;
+
             cursor: pointer;
+
         }
+
         .modal-proof-img:hover {
+
             border-color: #00ff88;
+
         }
+
         .modal-img-content {
+
             max-width: 90%;
+
             max-height: 90vh;
+
             object-fit: contain;
+
             border: 2px solid #00ff88;
+
             border-radius: 6px;
+
             transform: scale(0.9);
+
             transition: transform 0.3s ease;
+
         }
+
         .modal.show { display: flex; opacity: 1; }
+
         .modal.show .modal-content-box, 
+
         .modal.show .modal-img-content { transform: scale(1); }
+
         
+
         .modal-close {
+
             position: absolute;
+
             top: 30px;
+
             right: 40px;
+
             color: #00ff88;
+
             font-size: 40px;
+
             font-weight: bold;
+
             cursor: pointer;
+
             z-index: 10001;
+
         }
+
+
 
         @media(max-width: 768px){
+
             section{padding: 80px 20px 20px 20px;}
+
             .logo{height:40px;}
+
             .nav-links{font-size:12px;}
+
             .three-column-grid { grid-template-columns: 1fr; }
+
             .hero h1 { font-size: 40px; }
+
         }
+
     </style>
+
 </head>
+
 <body>
 
+
+
 <!-- Intro Screen Loader Container -->
+
 <div id="introScreen">
+
     <video id="introVideo" autoplay muted playsinline>
+
         <source src="intro.mp4" type="video/mp4">
+
     </video>
+
 </div>
+
+
 
 <!-- Main Portfolio Base Shell -->
+
 <div id="portfolio">
+
     <video id="landingVideo" class="video-bg" autoplay muted loop playsinline>
+
         <source src="landing.mp4" type="video/mp4">
+
     </video>
+
     <video id="bgVideo" class="video-bg" autoplay muted loop playsinline>
+
         <source src="background.mp4" type="video/mp4">
+
     </video>
+
     <div class="overlay"></div>
 
+
+
     <nav>
+
         <div class="nav-links">
+
             <a href="#home">HOME</a>
+
             <a href="#projects">PROJECTS</a>
+
             <a href="#vulnerabilities">VULNERABILITIES</a>
+
             <a href="#certificates">CERTIFICATES</a>
+
             <a href="#skills">SKILLS</a>
+
             <a href="#contact">CONTACT</a>
+
         </div>
+
         <img src="logo.png" class="logo" alt="Logo">
+
     </nav>
 
+
+
     <section id="home" class="hero">
+
         <h1>ANKIT KUMAR</h1>
+
         <h2>Cybersecurity Student | Tech & Code Enthusiast</h2>
+
         <div class="section-badge">Securing Systems & Architecting Code</div>
+
         <p style="max-width:800px;margin-top:20px">Focused on cybersecurity research, vulnerability assessment, secure software development and practical security testing.</p>
+
     </section>
+
+
 
     <!-- Page 1: Projects Explorer Section -->
+
     <section id="projects">
+
         <h1>PROJECTS</h1>
+
         <div class="section-badge">Click card to expand complete deployment & source specifications</div>
+
         
+
         <div class="three-column-grid">
+
             <div class="card clickable-card" onclick="openDetailsModal('proj1', 'project')">
+
                 <h3>Automated Network Reconnaissance Tool</h3>
+
                 <p>Lightweight, CLI-based security utility using Python and Scapy to automate local network layer verification loops...</p>
+
                 <span class="read-more-btn">Analyze Architecture →</span>
+
             </div>
+
             <div class="card clickable-card" onclick="openDetailsModal('proj2', 'project')">
+
                 <h3>OWASP Top 10 Vulnerability Lab</h3>
+
                 <p>Controlled sandbox infrastructure deployed via container frameworks to document critical code-level web vulnerabilities...</p>
+
                 <span class="read-more-btn">Analyze Architecture →</span>
+
             </div>
+
             <div class="card clickable-card" onclick="openDetailsModal('proj3', 'project')">
+
                 <h3>Local Cryptographic Text Encryptor</h3>
+
                 <p>Desktop storage integrity module built utilizing advanced libraries ensuring localized encryption primitives...</p>
+
                 <span class="read-more-btn">Analyze Architecture →</span>
+
             </div>
+
         </div>
+
     </section>
+
+
 
     <!-- Page 2: Vulnerability Research Area -->
+
     <section id="vulnerabilities">
+
         <h1>VULNERABILITY RESEARCH</h1>
+
         <div class="section-badge">Click finding card to see technical logs, image proof, and official PDF report</div>
+
         
+
         <div class="three-column-grid">
+
             <div class="card clickable-card" onclick="openDetailsModal('vuln1', 'vulnerability')">
+
                 <span class="cvss-badge">CVSS 6.1 (Medium)</span>
+
                 <h3>0x01 Tabnabbing Observations</h3>
+
                 <p>Discovered target="_blank" window hazards on peripheral links leading to parent context vulnerability execution paths...</p>
+
                 <span class="read-more-btn">View Evidence Proof →</span>
+
             </div>
+
             <div class="card clickable-card" onclick="openDetailsModal('vuln2', 'vulnerability')">
+
                 <span class="cvss-badge">CVSS 7.5 (High)</span>
+
                 <h3>0x02 Content Security Policy</h3>
+
                 <p>Mapped critical architectural deficiencies where broad-scoped CSP injection blocks left boundaries exposed...</p>
+
                 <span class="read-more-btn">View Evidence Proof →</span>
+
             </div>
+
             <div class="card clickable-card" onclick="openDetailsModal('vuln3', 'vulnerability')">
+
                 <span class="cvss-badge">CVSS 6.5 (Medium)</span>
+
                 <h3>0x03 Subresource Integrity</h3>
+
                 <p>Identified third-party network scripts parsing across administrative zones lacking explicit cryptographic hash verification flags...</p>
+
                 <span class="read-more-btn">View Evidence Proof →</span>
+
             </div>
+
         </div>
+
     </section>
+
+
 
     <!-- Certificates Grid Section -->
+
     <section id="certificates">
+
         <h1>CERTIFICATES</h1>
+
         <div class="section-badge">Click asset block to execute full-resolution document inspection overlay</div>
+
         
+
         <div class="three-column-grid">
+
             <div class="card">
+
                 <h3>Advanced Defensive Operations</h3>
+
                 <p>Validation of proficiency regarding network mapping algorithms.</p>
+
                 <img src="cert1_thumb.jpg" class="cert-thumb" alt="Certificate 1" data-full="cert1.jpg">
+
             </div>
+
             <div class="card">
+
                 <h3>Offensive Security Frameworks</h3>
+
                 <p>Validation of practical exploit engineering mitigation steps.</p>
+
                 <img src="cert2_thumb.jpg" class="cert-thumb" alt="Certificate 2" data-full="cert2.jpg">
+
             </div>
+
         </div>
+
     </section>
+
+
 
     <!-- Skills Dots Section -->
+
     <section id="skills">
+
         <h1>SKILLS LEARNED</h1>
+
         <div class="section-badge">Core Technological Proficiencies</div>
+
         <div class="skills-container">
+
             <div class="skill-dot">OWASP Top 10</div>
+
             <div class="skill-dot">Burp Suite</div>
+
             <div class="skill-dot">Nmap</div>
+
             <div class="skill-dot">Wireshark</div>
+
             <div class="skill-dot">Python</div>
+
             <div class="skill-dot">Bash</div>
+
             <div class="skill-dot">Linux</div>
+
             <div class="skill-dot">Secure Code Review</div>
+
             <div class="skill-dot">Cryptography</div>
+
             <div class="skill-dot">GitHub Control</div>
+
         </div>
+
     </section>
+
+
 
     <!-- Contacts Footer Section -->
+
     <section id="contact">
+
         <h1>CONTACT</h1>
+
         <div class="section-badge">Secure Comms Trunk Gateway</div>
+
         <div class="card" style="max-width: 550px;">
+
             <p><strong>Email:</strong> <a href="mailto:sverma98015@gmail.com" style="color:#00ff88;">sverma98015@gmail.com</a></p>
+
             <p><strong>GitHub:</strong> <a href="https://github.com/sverma98015-commits" target="_blank" style="color:#00ff88;">sverma98015-commits</a></p>
+
             <p style="margin-bottom: 0;"><strong>Phone Line:</strong> +91 7766099089</p>
+
         </div>
+
     </section>
+
 </div>
+
+
 
 <!-- Modal Framework Container: Descriptive Texts Elements -->
+
 <div id="detailsModal" class="modal">
+
     <span class="modal-close" onclick="closeAllModals()">&times;</span>
+
     <div class="modal-content-box">
+
         <h2 id="modalTitle">Header</h2>
+
         <div id="modalMeta"></div>
+
         <p id="modalDescription" style="color: #fff; font-size: 15px; white-space: pre-line; margin-top: 15px;"></p>
+
         <div id="modalInteractiveArea"></div>
+
     </div>
+
 </div>
+
+
 
 <!-- Lightbox Modal Container: Maximum Media Rendering Viewer -->
+
 <div id="imgLightbox" class="modal">
+
     <span class="modal-close" onclick="closeLightbox()">&times;</span>
+
     <img class="modal-img-content" id="lightboxTargetImg" alt="Enlarged Document">
+
 </div>
 
+
+
 <script>
+
     // System Structural Registry Database Map
+
     const informationRegistry = {
+
         proj1: {
+
             title: "Automated Network Reconnaissance & Asset Mapping Tool",
+
             desc: "Developed a lightweight, CLI-based security utility using Python and Scapy to automate internal network discovery. The tool performs active ARP pinging to identify active hosts on a local subnet, executes basic TCP port scanning to flag open standard ports (e.g., HTTP, SSH, FTP), and outputs a structured log file mapping potential attack surfaces. Implemented multithreading to optimize scanning speed and clean error handling to handle dropped packets seamlessly. Hosted fully on GitHub with a comprehensive README detailing use cases and defensive network mitigation strategies.",
+
             linkText: "View Live Repository on GitHub →",
+
             url: "https://github.com/sverma98015-commits/automated-recon-tool" 
+
         },
+
         proj2: {
+
             title: "OWASP Top 10 Vulnerability Lab & Secure Code Patches",
+
             desc: "Configured a local, controlled sandbox environment using Docker to analyze web application flaws. Documented successful, hands-on exploits for critical vulnerabilities including SQL Injection (SQLi) via manual payload injection, Cross-Site Scripting (XSS) to hijack simulated session tokens, and Insecure Direct Object References (IDOR) by manipulating URL parameters. For each successfully exploited flaw, wrote a detailed technical write-up containing the reproduction steps, impact assessment using CVSS metrics, and the exact source code remediation (patch) required to secure the application backend against the attack.",
+
             linkText: "Launch Application Environment Code →",
+
             url: "https://github.com/sverma98015-commits/owasp-vulnerability-lab"
+
         },
+
         proj3: {
+
             title: "Local Cryptographic Text Encryptor & Hash Verifier",
+
             desc: "Built a desktop security application in Python utilizing the Cryptography library to implement secure file and message handling. The tool allows users to encrypt and decrypt sensitive textual data using symmetric key cryptography (AES-256 in CBC mode) with proper salting and initialization vectors. Additionally, integrated an automated SHA-256 Integrity Verification module that computes and matches cryptographic hashes of local files to detect unauthorized file tampering or data corruption. Source code structure follows proper cryptographic practices, avoiding hardcoded keys or weak random number generation.",
+
             linkText: "Inspect Cryptographic Source Tree →",
+
             url: "https://github.com/sverma98015-commits/crypto-text-encryptor"
+
         },
+
         vuln1: {
+
             title: "IITK Security Disclosure: Reverse Tabnabbing Vulnerability",
+
             meta: "<span class='cvss-badge'>CVSS 6.1 (Medium)</span>",
+
             desc: "Identified client-side isolation vulnerabilities inside peripheral navigation components. The absence of strict protective configurations allowed child tabs to access parent object pointers via window.opener manipulation, mapping potential session takeover risks.\n\nClick the evidence image snippet below to view it at full uploaded scale.",
+
             proofImg: "tabnabbing_proof.jpg", 
+
             linkText: "Open Verified Disclosure Report (PDF) →",
+
             url: "kkkkkkkk.pdf" 
+
         },
+
         vuln2: {
+
             title: "IITK Security Disclosure: Content Security Policy Flaws",
+
             meta: "<span class='cvss-badge'>CVSS 7.5 (High)</span>",
+
             desc: "Mapped missing security vectors inside server response rules. Broad configurations within current boundaries failed to cleanly restrict unsafe-inline script parameters, introducing high risks for arbitrary cross-site layout tampering scripts.\n\nClick the evidence image snippet below to view it at full uploaded scale.",
+
             proofImg: "csp_proof.jpg",
+
             linkText: "Open Verified Disclosure Report (PDF) →",
+
             url: "kkkkkkkk.pdf"
+
         },
+
         vuln3: {
+
             title: "IITK Security Disclosure: Missing Subresource Integrity (SRI)",
+
             meta: "<span class='cvss-badge'>CVSS 6.5 (Medium)</span>",
+
             desc: "Identified vital script resources loaded over remote Content Delivery Networks (CDNs) missing accompanying cryptographic verification parameters (SRI hashes). This oversight leaves the ecosystem exposed to third-party script exploitation and supply-chain tampering routes.\n\nClick the evidence image snippet below to view it at full uploaded scale.",
+
             proofImg: "sri_proof.jpg",
+
             linkText: "Open Verified Disclosure Report (PDF) →",
+
             url: "kkkkkkkk.pdf"
+
         }
+
     };
 
+
+
     const introVideo = document.getElementById('introVideo');
+
     const portfolio = document.getElementById('portfolio');
+
     const detailsModal = document.getElementById('detailsModal');
+
     const imgLightbox = document.getElementById('imgLightbox');
 
+
+
     // Intro Engine Event Management Structure
+
     introVideo.addEventListener('ended', () => {
+
         document.getElementById('introScreen').style.display = 'none';
+
         portfolio.style.display = 'block';
+
         setTimeout(() => { portfolio.style.opacity = '1'; }, 50);
+
     });
+
+
 
     // Dynamic Scrolling Engine Management Setup
+
     window.addEventListener('scroll', () => {
+
         const landingVideo = document.getElementById('landingVideo');
+
         const bgVideo = document.getElementById('bgVideo');
+
         if (window.scrollY > 400) {
+
             landingVideo.style.opacity = '0';
+
             bgVideo.style.opacity = '1';
+
         } else {
+
             landingVideo.style.opacity = '1';
+
             bgVideo.style.opacity = '0';
+
         }
+
     });
+
+
 
     // Unified Data Modal Injection System
+
     function openDetailsModal(id, type) {
+
         const record = informationRegistry[id];
+
         document.getElementById('modalTitle').innerText = record.title;
+
         document.getElementById('modalMeta').innerHTML = record.meta ? record.meta : '';
+
         document.getElementById('modalDescription').innerText = record.desc;
+
         
+
         let interactiveHTML = '';
+
         
+
         if (type === 'vulnerability' && record.proofImg) {
+
             interactiveHTML += `<p style='color:#00ff88; margin-top:15px; font-weight:bold;'>[+] Visual Evidence / PoC Screenshot:</p>
+
                                 <img src="${record.proofImg}" class="modal-proof-img" onclick="openLightbox('${record.proofImg}')" alt="Exploit Proof Snapshot">`;
+
         }
+
         
+
         if (record.url && record.linkText) {
+
             interactiveHTML += `<br><a href="${record.url}" target="_blank" class="modal-action-btn">${record.linkText}</a>`;
+
         }
+
+
 
         document.getElementById('modalInteractiveArea').innerHTML = interactiveHTML;
+
         
+
         detailsModal.style.display = 'flex';
+
         setTimeout(() => { detailsModal.classList.add('show'); }, 10);
+
     }
+
+
 
     // High-Resolution Lightbox Handlers
+
     function openLightbox(imgSrc) {
+
         document.getElementById('lightboxTargetImg').src = imgSrc;
+
         imgLightbox.style.display = 'flex';
+
         setTimeout(() => { imgLightbox.classList.add('show'); }, 10);
+
     }
+
+
 
     document.querySelectorAll('.cert-thumb').forEach(thumb => {
+
         thumb.addEventListener('click', function() {
+
             openLightbox(this.getAttribute('data-full'));
+
         });
+
     });
+
+
 
     function closeLightbox() {
+
         imgLightbox.classList.remove('show');
+
         setTimeout(() => { imgLightbox.style.display = 'none'; }, 300);
+
     }
+
+
 
     function closeAllModals() {
+
         detailsModal.classList.remove('show');
+
         setTimeout(() => { detailsModal.style.display = 'none'; }, 300);
+
     }
 
+
+
     window.addEventListener('click', (e) => {
+
         if (e.target === detailsModal) closeAllModals();
+
         if (e.target === imgLightbox) closeLightbox();
+
     });
+
     document.addEventListener('keydown', (e) => {
+
         if (e.key === 'Escape') {
+
             closeAllModals();
+
             closeLightbox();
+
         }
+
     });
+
 </script>
+
 </body>
-</html>
+
+</html> but certificates image is not loading and i want to add link to my first project https://github.com/sverma98015-commits/Automated-Network-Reconnaissance-Asset-Mapping-Tool
