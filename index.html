@@ -16,7 +16,7 @@
             background: #000;
             color: #fff;
             overflow-x: hidden;
-            font-size: 15px; /* Clean, perfectly readable baseline */
+            font-size: 15px;
         }
         
         /* Intro Screen Container */
@@ -125,10 +125,10 @@
             height: 55px;
         }
 
-        /* Fixed Section Spacing: Balanced middle ground */
+        /* Fixed Section Spacing */
         section {
             min-height: 85vh;
-            padding: 80px 50px 60px 50px; /* Comfortable breathing room without massive gaps */
+            padding: 80px 50px 60px 50px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -140,7 +140,7 @@
         }
         h1 {
             color: #00ff88;
-            font-size: 2.2rem; /* Cleaned up to be assertive but not giant */
+            font-size: 2.2rem;
             margin-bottom: 12px;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -279,37 +279,30 @@
             transform: scale(1.05);
         }
         
-        /* Description Overlay Overlay (Triggered on hover/touch) */
+        /* Description Overlay (Triggered on hover/touch - clean text, no names) */
         .skill-overlay {
             position: absolute;
             inset: 0;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.92);
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 12px;
+            padding: 15px;
             opacity: 0;
             transition: opacity 0.3s ease;
             text-align: center;
-            pointer-events: none; /* Allows click throughs to trigger parent events */
+            pointer-events: none;
         }
         .skill-tile:hover .skill-overlay,
         .skill-tile:active .skill-overlay {
             opacity: 1;
         }
-        .skill-overlay h4 {
-            color: #00ff88;
-            font-size: 13px;
-            margin-bottom: 6px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
         .skill-overlay p {
-            color: #e0e0e0;
-            font-size: 11px;
-            line-height: 1.4;
+            color: #00ff88;
+            font-size: 12px;
+            line-height: 1.5;
             margin: 0;
+            font-weight: bold;
         }
 
         /* Unified Layout Popup Modals */
@@ -513,86 +506,75 @@
 
     <section id="skills">
         <h1>SKILLS LEARNED</h1>
-        <div class="section-badge">Hover or tap tiles to reveal domain descriptions</div>
+        <div class="section-badge">Hover or tap tiles to view technical overview tracks</div>
         <div class="skills-matrix">
             <div class="skills-row">
                 <div class="skill-tile">
-                    <img src="s1.jpg" alt="OWASP Top 10">
+                    <img src="s1.png" alt="S1 Framework">
                     <div class="skill-overlay">
-                        <h4>OWASP Top 10</h4>
-                        <p>Identification, exploitation, and code-level remediation of critical web application flaws.</p>
+                        <p>Identification, exploitation, and secure source remediation of critical web infrastructure vulnerabilities tracking OWASP Top 10 guidelines.</p>
                     </div>
                 </div>
                 <div class="skill-tile">
-                    <img src="s2.jpg" alt="Burp Suite">
+                    <img src="s2.png" alt="S2 Framework">
                     <div class="skill-overlay">
-                        <h4>Burp Suite</h4>
-                        <p>Interception, request manipulation, and testing of web app boundaries.</p>
+                        <p>Intercepting HTTP/S request chains, automating parameter intrusion, and scanning web endpoint boundaries using Burp Suite proxy ecosystems.</p>
                     </div>
                 </div>
                 <div class="skill-tile">
-                    <img src="s3.jpg" alt="Nmap">
+                    <img src="s3.png" alt="S3 Framework">
                     <div class="skill-overlay">
-                        <h4>Nmap</h4>
-                        <p>Network discovery, active asset mapping, and infrastructure port scanning auditing.</p>
+                        <p>Executing active layer discovery loops, network topology trace tracking, and mapping accessible asset ports utilizing custom Nmap commands.</p>
                     </div>
                 </div>
                 <div class="skill-tile">
-                    <img src="s4.jpg" alt="Wireshark">
+                    <img src="s4.png" alt="S4 Framework">
                     <div class="skill-overlay">
-                        <h4>Wireshark</h4>
-                        <p>Deep packet analysis, threat isolation, and network communication protocol monitoring.</p>
+                        <p>Conducting deep packet frame captures, investigating interface handshakes, and isolating anomalous telemetry payloads via Wireshark hooks.</p>
                     </div>
                 </div>
                 <div class="skill-tile">
-                    <img src="s5.jpg" alt="Linux">
+                    <img src="s5.png" alt="S5 Framework">
                     <div class="skill-overlay">
-                        <h4>Linux</h4>
-                        <p>Secure system administration, terminal environment automation, and privilege management.</p>
+                        <p>Managing hardened UNIX server environments, configuring directory access control trees, and standardizing security tasks natively inside terminal environments.</p>
                     </div>
                 </div>
                 <div class="skill-tile">
-                    <img src="s6.jpg" alt="Python">
+                    <img src="s6.png" alt="S6 Framework">
                     <div class="skill-overlay">
-                        <h4>Python</h4>
-                        <p>Developing lightweight offensive security scripts and robust local automation utilities.</p>
+                        <p>Architecting defensive script systems, implementing socket connections, and compiling modular multi-threaded network tooling loops using Python.</p>
                     </div>
                 </div>
             </div>
             <div class="skills-row">
                 <div class="skill-tile">
-                    <img src="s7.jpg" alt="Bash">
+                    <img src="s7.png" alt="S7 Framework">
                     <div class="skill-overlay">
-                        <h4>Bash</h4>
-                        <p>Shell engineering for faster pipeline testing and terminal loop configuration.</p>
+                        <p>Engineering customized automation pipelines, streaming console data pipelines, and structuring administrative execution paths using Bash scripts.</p>
                     </div>
                 </div>
                 <div class="skill-tile">
-                    <img src="s8.jpg" alt="Secure Code Review">
+                    <img src="s8.png" alt="S8 Framework">
                     <div class="skill-overlay">
-                        <h4>Secure Code Review</h4>
-                        <p>Static application scanning to intercept injection flaws before system deployment.</p>
+                        <p>Performing logic flow assessments, finding programmatic injection points, and enforcing secure code designs prior to system compilation tracks.</p>
                     </div>
                 </div>
                 <div class="skill-tile">
-                    <img src="s9.jpg" alt="Cryptography">
+                    <img src="s9.png" alt="S9 Framework">
                     <div class="skill-overlay">
-                        <h4>Cryptography</h4>
-                        <p>Implementing symmetric AES encryption, salts, and SHA integrity check loops.</p>
+                        <p>Applying modern symmetric/asymmetric cryptographic primitives, generating salting chains, and deploying SHA integrity block validations.</p>
                     </div>
                 </div>
                 <div class="skill-tile">
-                    <img src="s10.jpg" alt="GitHub Control">
+                    <img src="s10.png" alt="S10 Framework">
                     <div class="skill-overlay">
-                        <h4>GitHub Control</h4>
-                        <p>Managing secure repository architecture, commits, and version history trees.</p>
+                        <p>Maintaining source architecture state integrity, monitoring secure tag releases, and establishing protected branch push protocols inside GitHub.</p>
                     </div>
                 </div>
                 <div class="skill-tile">
-                    <img src="s11.jpg" alt="Vulnerability Assessment">
+                    <img src="s11.png" alt="S11 Framework">
                     <div class="skill-overlay">
-                        <h4>Vulnerability Assessment</h4>
-                        <p>Systematic assessment of attack surfaces to generate validation and patch trees.</p>
+                        <p>Conducting systematic attack-surface evaluations, mapping unpatched configurations, and drafting structured remediation roadmaps across environments.</p>
                     </div>
                 </div>
                 <div style="visibility: hidden;"></div>
