@@ -240,23 +240,26 @@
             border-color: #00ff88;
         }
 
-        /* Visual Image Grid Components */
+        /* ADJUSTED SKILLS COMPONENT FOR LARGE IMAGES & MINIMAL GAPS */
         #skills {
             align-items: center;
+            padding-top: 60px;
+            padding-bottom: 60px;
         }
         #skills h1 {
             align-self: center;
         }
         #skills .section-badge {
             align-self: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
         .skills-container {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 25px;
+            /* Changes columns to fit actual badge scale rather than forcing stretching */
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px; /* Decreased gap space */
             width: 100%;
-            max-width: 1100px;
+            max-width: 950px; /* Snugs the layout in slightly so badges remain packed tight */
             margin: 0 auto;
             padding: 10px;
         }
@@ -273,12 +276,12 @@
             transition: transform 0.2s ease;
         }
         .skill-img-btn:hover {
-            transform: scale(1.08);
+            transform: scale(1.06);
         }
         .skill-img-btn img {
             width: 100%;
             height: auto;
-            max-height: 85px;
+            max-height: 140px; /* Increased image height capacity dramatically */
             object-fit: contain;
         }
 
@@ -367,17 +370,13 @@
             z-index: 10001;
         }
 
-        @media(max-width: 992px) {
-            .skills-container { grid-template-columns: repeat(3, 1fr); }
-        }
-
         @media(max-width: 768px) {
             section{padding: 80px 20px 40px 20px;}
             .logo{height:40px;}
             .nav-links{font-size:12px; gap: 15px;}
             .three-column-grid { grid-template-columns: 1fr; }
             .hero h1 { font-size: 38px; }
-            .skills-container { grid-template-columns: repeat(2, 1fr); }
+            .skills-container { grid-template-columns: repeat(2, 1fr); gap: 10px; }
         }
     </style>
 </head>
