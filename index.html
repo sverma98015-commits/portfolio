@@ -294,53 +294,69 @@ nav {
 
         /* Transparent Skill Graphic Tab Rulesets */
      /* Tighten the Skills Section Container */
+/* Layout block wrapper centering */
 #skills {
-    padding-top: 100px;
-    padding-bottom: 60px;
+    padding-top: 100px; /* Gives perfect spacing below your certificates tab */
+    padding-bottom: 80px;
     width: 100%;
-    max-width: 1000px; /* Constrains the grid width so icons don't drift apart */
-    margin: 0 auto;    /* Centers the whole grid block */
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* Tight Grid Setup */
+#skills h1 {
+    color: #ffffff;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 12px;
+    letter-spacing: 2px;
+}
+
+#skills .section-badge {
+    text-align: center;
+    margin-bottom: 45px;
+    color: #00ff88;
+    background: rgba(0, 255, 136, 0.05);
+    border: 1px solid rgba(0, 255, 136, 0.2);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    display: inline-block;
+}
+
+/* Beautiful Grid for holding just the visual pill buttons */
 .skills-container {
     display: grid;
-    /* Forces columns to stay between 220px and 260px max */
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
-    gap: 30px;         /* Uniform spacing between cards */
-    justify-content: center; /* Centers columns on big screens */
-    align-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
     width: 100%;
-    padding: 20px;
+    padding: 10px;
 }
 
-/* Make Buttons and Images Behave */
 .skill-img-btn {
-    background: rgba(255, 255, 255, 0.02); /* Subtle glow panel background */
-    border: 1px solid rgba(0, 255, 136, 0.1);
-    border-radius: 12px;
-    padding: 15px;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
     cursor: pointer;
-    width: 100%; 
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: all 0.3s ease;
+    transition: transform 0.2s ease;
 }
 
 .skill-img-btn:hover {
-    background: rgba(0, 255, 136, 0.05);
-    border-color: rgba(0, 255, 136, 0.6);
-    transform: translateY(-4px);
-    box-shadow: 0 5px 15px rgba(0, 255, 136, 0.25);
+    transform: scale(1.05);
 }
 
 .skill-img-btn img {
-    width: 100%;       /* Forces the pill graphic to scale up nicely */
-    max-width: 240px;  /* Matches your original template slice dimensions */
-    height: auto;      
+    width: 100%;
+    height: auto;
     object-fit: contain;
-    display: block;
+    max-height: 85px;
 }
         /* Unified Layout Popup Modals */
         .modal {
