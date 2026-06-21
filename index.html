@@ -130,7 +130,29 @@ nav {
     color: #ffffff;
     text-shadow: 0 0 10px #00ff88;
 }
+/* Add this right below your .nav-links a:hover block to fix the small logo issue */
+.logo {
+    height: 60px;       /* Forces the logo to be big and visible */
+    width: auto;        /* Keeps the aspect ratio perfectly balanced */
+    object-fit: contain;/* Prevents any image stretching or squeezing */
+    display: block;
+}
 
+/* Responsive fix to keep things tight on mobile phones */
+@media (max-width: 768px) {
+    nav {
+        padding: 10px 20px;
+    }
+    .logo {
+        height: 45px;   /* Slightly smaller logo on mobile so it fits nicely */
+    }
+    .nav-links {
+        gap: 12px;      /* Pulls the links closer together on mobile screens */
+    }
+    .nav-links a {
+        font-size: 11px;
+    }
+}
 /* Enforced explicit dimensions to stop the logo from shrinking down */
 .logo {
     height: 65px; /* Boosted vertical size */
