@@ -93,37 +93,68 @@
             z-index: -1;
         }
 
-        /* Nav Header Layout */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 30px;
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(8px);
-            z-index: 1000;
-        }
-        .nav-links {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-        .nav-links a {
-            color: #00ff88;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 14px;
-        }
-        .nav-links a:hover {
-            color: #ffffff;
-            text-shadow: 0 0 8px #00ff88;
-        }
-        .logo {
-            height: 55px;
-        }
+        /* Fixed Nav Header Layout */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between; /* Keeps navigation items and logo anchored to opposite sides */
+    align-items: center;
+    padding: 10px 40px; /* Reduced vertical padding, generous side spacing */
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    z-index: 1000;
+}
+
+/* Group container for the menu items to prevent them from breaking apart */
+.nav-links {
+    display: flex;
+    gap: 25px; /* Tightly controls the manual horizontal gap between navigation items */
+    align-items: center;
+}
+
+.nav-links a {
+    color: #00ff88;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 13px;
+    letter-spacing: 1px;
+    transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+.nav-links a:hover {
+    color: #ffffff;
+    text-shadow: 0 0 10px #00ff88;
+}
+
+/* Enforced explicit dimensions to stop the logo from shrinking down */
+.logo {
+    height: 65px; /* Boosted vertical size */
+    width: auto;  /* Maintains clean horizontal proportions automatically */
+    object-fit: contain;
+    display: block;
+}
+
+/* Responsive Overrides for Mobile devices */
+@media (max-width: 768px) {
+    nav {
+        padding: 10px 20px;
+        flex-direction: row; /* Keeps them on one horizontal strip if space permits */
+    }
+    .logo {
+        height: 50px; /* Perfectly scaled mobile presence */
+    }
+    .nav-links {
+        gap: 12px; /* Pulls links even closer on small screens to fit perfectly */
+    }
+    .nav-links a {
+        font-size: 11px;
+    }
+}
 
         /* Section Spacing Layout */
         section {
