@@ -293,43 +293,54 @@ nav {
         }
 
         /* Transparent Skill Graphic Tab Rulesets */
-        /* Tighten the Skills Section Container */
+     /* Tighten the Skills Section Container */
 #skills {
-    padding-top: 60px;
+    padding-top: 100px;
     padding-bottom: 60px;
-    max-width: 1200px; 
-    margin: 0 auto;    
+    width: 100%;
+    max-width: 1000px; /* Constrains the grid width so icons don't drift apart */
+    margin: 0 auto;    /* Centers the whole grid block */
 }
 
 /* Tight Grid Setup */
 .skills-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); 
-    gap: 15px; 
-    justify-items: center;
-    align-items: center;
+    /* Forces columns to stay between 220px and 260px max */
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+    gap: 30px;         /* Uniform spacing between cards */
+    justify-content: center; /* Centers columns on big screens */
+    align-content: center;
     width: 100%;
-    margin-top: 20px;
+    padding: 20px;
 }
 
 /* Make Buttons and Images Behave */
 .skill-img-btn {
-    background: none;
-    border: none;
-    padding: 0;
-    margin: 0;
+    background: rgba(255, 255, 255, 0.02); /* Subtle glow panel background */
+    border: 1px solid rgba(0, 255, 136, 0.1);
+    border-radius: 12px;
+    padding: 15px;
     cursor: pointer;
     width: 100%; 
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: all 0.3s ease;
+}
+
+.skill-img-btn:hover {
+    background: rgba(0, 255, 136, 0.05);
+    border-color: rgba(0, 255, 136, 0.6);
+    transform: translateY(-4px);
+    box-shadow: 0 5px 15px rgba(0, 255, 136, 0.25);
 }
 
 .skill-img-btn img {
-    width: 100%;       
+    width: 100%;       /* Forces the pill graphic to scale up nicely */
+    max-width: 240px;  /* Matches your original template slice dimensions */
     height: auto;      
     object-fit: contain;
-    max-height: 90px;  
+    display: block;
 }
         /* Unified Layout Popup Modals */
         .modal {
