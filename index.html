@@ -606,21 +606,21 @@
             title: "AWS Karpenter: Enhanced Telemetry & Silent Failure Remediation",
             meta: "<span class='tech-badge'>Repository: aws/karpenter-provider-aws</span>",
             desc: "The Challenge:\nKarpenter's Amazon Linux 2 (AL2) AMI discovery logic suffered from an observability gap where Systems Manager (SSM) parameter lookup errors were silently swallowed by the system, leaving zero debug-level traces. This lack of visibility made troubleshooting configuration drifts or cluster IAM permission restrictions difficult for operators tracking production infrastructure.\n\nMy Solution & Engineering Impact:\nRefactored the core AMI discovery module to implement rigorous structured logging across both successful and failed lookup lifecycles. By exposing fine-grained observability protocols, this engineering fix empowers DevOps teams to identify precise configuration or permission constraints instantly. This operational hardening drastically lowers Mean Time To Recovery (MTTR) and strengthens cluster provisioning reliability across high-availability production architectures.\n\nAssociated Issue: #7723",
-            linkText: "View Merged Pull Request #9273 on GitHub →",
+            linkText: "Review Submitted Pull Request #9273 on GitHub →",
             url: "https://github.com/aws/karpenter-provider-aws/pull/9273" 
         },
         contrib2: {
             title: "Apple / SwiftCrypto: Cryptographic Spec Alignment & Buffer Safety",
             meta: "<span class='tech-badge'>Repository: apple/swift-crypto</span>",
             desc: "The Challenge:\nThe framework's integration of the X-Wing hybrid Post-Quantum Key Encapsulation Mechanism (ML-KEM-768 with X25519) contained an incorrect hardcoded validation block. The codebase enforced an initialization payload assertion threshold of exactly 96 bytes, conflicting with the cryptographic specification defining a 64-byte format (a 32-byte seed concatenated with a 32-byte public key hash). This mismatch forced an unhandled incorrectParameterSize runtime exception, while fragile offset index logic threatened memory safety boundaries across diverse platform architectures.\n\nMy Solution & Engineering Impact:\nRefactored the core implementation within the init(integrityCheckedRepresentation:) initialization protocol to adhere directly to the X-Wing cryptographic specification, reducing the size criteria threshold to 64 bytes and eliminating runtime validation failures. Additionally, migrated manual, error-prone array offset slicing math into a secure, declarative suffix(32) slicing methodology to enforce bulletproof cross-platform memory-buffer safety. Performed comprehensive mathematical target regression validation loops, tracking a 100% pass rate across the framework's entire XWingTests sequence.",
-            linkText: "View Merged Pull Request #445 on GitHub →",
+            linkText: "Review Submitted Pull Request #445 on GitHub →",
             url: "https://github.com/apple/swift-crypto/pull/445"
         },
         contrib3: {
             title: "AWS SDK for Go v2: Multi-Region Initialization Hardening",
             meta: "<span class='tech-badge'>Repository: aws/aws-sdk-go-v2</span>",
             desc: "The Challenge:\nDuring service client initialization cycles, the SDK suffered from opaque error pathways when managing sophisticated, multi-region credential resolution matrices in fragmented enterprise infrastructure setups. These boot-up anomalies failed to provide adequate structural context to cleanly differentiate between network-layer routing limits and persistent cloud configuration errors, occasionally leading to sudden operational panics or silent runtime lockups.\n\nMy Solution & Engineering Impact:\nArchitected descriptive, nested error wrapping workflows directly into the service client boot-up cycle. By implementing defensive state validation checks before complete client instantiation steps occur, the patch successfully transitions the pipeline execution strategy from a raw 'fail-fast-on-panic' model to a resilient 'fail-gracefully-with-context' state. This contribution provides structured feedback loop mechanics that dramatically decrease infrastructure debugging windows, allowing developers to track and rectify credential mismatches during the early development stage rather than at production runtime.",
-            linkText: "View Merged Pull Request #3454 on GitHub →",
+            linkText: "Review Submitted Pull Request #3454 on GitHub →",
             url: "https://github.com/aws/aws-sdk-go-v2/pull/3454"
         }
     };
