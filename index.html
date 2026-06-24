@@ -223,6 +223,17 @@
             margin-bottom: 10px;
             width: fit-content;
         }
+        .tech-badge {
+            background: rgba(0, 255, 136, 0.1);
+            color: #00ff88;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            display: inline-block;
+            margin-bottom: 10px;
+            width: fit-content;
+        }
 
         /* Image Rendering Setup */
         .cert-thumb {
@@ -417,7 +428,7 @@
         <div class="nav-links">
             <a href="#home">HOME</a>
             <a href="#projects">PROJECTS</a>
-            <a href="#vulnerabilities">VULNERABILITIES</a>
+            <a href="#contributions">CONTRIBUTIONS</a>
             <a href="#certificates">CERTIFICATES</a>
             <a href="#skills">SKILLS</a>
             <a href="#contact">CONTACT</a>
@@ -455,28 +466,28 @@
         </div>
     </section>
 
-    <section id="vulnerabilities">
-        <h1>VULNERABILITY RESEARCH</h1>
-        <div class="section-badge">Click finding card to see technical logs, image proof, and official PDF report</div>
+    <section id="contributions">
+        <h1>OPEN SOURCE CONTRIBUTIONS</h1>
+        <div class="section-badge">Click contribution card to review core challenge resolutions, engineering impact, and upstream pull requests</div>
         
         <div class="three-column-grid">
-            <div class="card clickable-card" onclick="openDetailsModal('vuln1', 'vulnerability')">
-                <span class="cvss-badge">CVSS 6.1 (Medium)</span>
-                <h3>0x01 Tabnabbing Observations</h3>
-                <p>Discovered target="_blank" window hazards on peripheral links leading to parent context vulnerability execution paths...</p>
-                <span class="read-more-btn">View Evidence Proof →</span>
+            <div class="card clickable-card" onclick="openDetailsModal('contrib1', 'contribution')">
+                <span class="tech-badge">Go, Kubernetes, AWS Infrastructure</span>
+                <h3>AWS Karpenter (Node Autoscaler)</h3>
+                <p>Resolved a critical observability gap within the Amazon Linux 2 (AL2) AMI discovery lifecycle logic. Refactored module telemetry to eliminate silent lookup failures...</p>
+                <span class="read-more-btn">Review Engineering Patch →</span>
             </div>
-            <div class="card clickable-card" onclick="openDetailsModal('vuln2', 'vulnerability')">
-                <span class="cvss-badge">CVSS 7.5 (High)</span>
-                <h3>0x02 Content Security Policy</h3>
-                <p>Mapped critical architectural deficiencies where broad-scoped CSP injection blocks left boundaries exposed...</p>
-                <span class="read-more-btn">View Evidence Proof →</span>
+            <div class="card clickable-card" onclick="openDetailsModal('contrib2', 'contribution')">
+                <span class="tech-badge">Swift, Cryptography, MSVC Toolchain</span>
+                <h3>Apple / SwiftCrypto</h3>
+                <p>Fixed a critical hardcoded size validation vulnerability within the X-Wing hybrid Post-Quantum Key Encapsulation Mechanism (ML-KEM-768 with X25519) payload initialization parsing sequence...</p>
+                <span class="read-more-btn">Review Cryptographic Alignment →</span>
             </div>
-            <div class="card clickable-card" onclick="openDetailsModal('vuln3', 'vulnerability')">
-                <span class="cvss-badge">CVSS 6.5 (Medium)</span>
-                <h3>0x03 Subresource Integrity</h3>
-                <p>Identified third-party network scripts parsing across administrative zones lacking explicit cryptographic hash verification flags...</p>
-                <span class="read-more-btn">View Evidence Proof →</span>
+            <div class="card clickable-card" onclick="openDetailsModal('contrib3', 'contribution')">
+                <span class="tech-badge">Go (Golang), SDK Architecture</span>
+                <h3>AWS SDK for Go v2</h3>
+                <p>Mitigated opaque failure modes and runtime panics occurring inside multi-region credential resolution loading protocols during service client bootstrapping steps...</p>
+                <span class="read-more-btn">Review Resiliency Architecture →</span>
             </div>
         </div>
     </section>
@@ -591,29 +602,26 @@
             linkText: "View Live Repository on GitHub→",
             url: "https://github.com/sverma98015-commits/local-crypto-tool"
         },
-        vuln1: {
-            title: "IITK Security Disclosure: Reverse Tabnabbing Vulnerability",
-            meta: "<span class='cvss-badge'>CVSS 6.1 (Medium)</span>",
-            desc: "Identified client-side isolation vulnerabilities inside peripheral navigation components. The absence of strict protective configurations allowed child tabs to access parent object pointers via window.opener manipulation, mapping potential session takeover risks.\n\nClick the evidence screenshot snippet below to view it at full scale.",
-            proofImg: "sshot1.jpg", 
-            linkText: "Open Verified Disclosure Report (PDF) →",
-            url: "pdf1.pdf" 
+        contrib1: {
+            title: "AWS Karpenter: Enhanced Telemetry & Silent Failure Remediation",
+            meta: "<span class='tech-badge'>Repository: aws/karpenter-provider-aws</span>",
+            desc: "The Challenge:\nKarpenter's Amazon Linux 2 (AL2) AMI discovery logic suffered from an observability gap where Systems Manager (SSM) parameter lookup errors were silently swallowed by the system, leaving zero debug-level traces. This lack of visibility made troubleshooting configuration drifts or cluster IAM permission restrictions difficult for operators tracking production infrastructure.\n\nMy Solution & Engineering Impact:\nRefactored the core AMI discovery module to implement rigorous structured logging across both successful and failed lookup lifecycles. By exposing fine-grained observability protocols, this engineering fix empowers DevOps teams to identify precise configuration or permission constraints instantly. This operational hardening drastically lowers Mean Time To Recovery (MTTR) and strengthens cluster provisioning reliability across high-availability production architectures.\n\nAssociated Issue: #7723",
+            linkText: "View Merged Pull Request #9273 on GitHub →",
+            url: "https://github.com/aws/karpenter-provider-aws/pull/9273" 
         },
-        vuln2: {
-            title: "IITK Security Disclosure: Content Security Policy Flaws",
-            meta: "<span class='cvss-badge'>CVSS 7.5 (High)</span>",
-            desc: "Mapped missing security vectors inside server response rules. Broad configurations within current boundaries failed to cleanly restrict unsafe-inline script parameters, introducing high risks for arbitrary cross-site layout tampering scripts.\n\nClick the evidence screenshot snippet below to view it at full scale.",
-            proofImg: "sshot2.jpg",
-            linkText: "Open Verified Disclosure Report (PDF) →",
-            url: "pdf2.pdf"
+        contrib2: {
+            title: "Apple / SwiftCrypto: Cryptographic Spec Alignment & Buffer Safety",
+            meta: "<span class='tech-badge'>Repository: apple/swift-crypto</span>",
+            desc: "The Challenge:\nThe framework's integration of the X-Wing hybrid Post-Quantum Key Encapsulation Mechanism (ML-KEM-768 with X25519) contained an incorrect hardcoded validation block. The codebase enforced an initialization payload assertion threshold of exactly 96 bytes, conflicting with the cryptographic specification defining a 64-byte format (a 32-byte seed concatenated with a 32-byte public key hash). This mismatch forced an unhandled incorrectParameterSize runtime exception, while fragile offset index logic threatened memory safety boundaries across diverse platform architectures.\n\nMy Solution & Engineering Impact:\nRefactored the core implementation within the init(integrityCheckedRepresentation:) initialization protocol to adhere directly to the X-Wing cryptographic specification, reducing the size criteria threshold to 64 bytes and eliminating runtime validation failures. Additionally, migrated manual, error-prone array offset slicing math into a secure, declarative suffix(32) slicing methodology to enforce bulletproof cross-platform memory-buffer safety. Performed comprehensive mathematical target regression validation loops, tracking a 100% pass rate across the framework's entire XWingTests sequence.",
+            linkText: "View Merged Pull Request #445 on GitHub →",
+            url: "https://github.com/apple/swift-crypto/pull/445"
         },
-        vuln3: {
-            title: "IITK Security Disclosure: Missing Subresource Integrity (SRI)",
-            meta: "<span class='cvss-badge'>CVSS 6.5 (Medium)</span>",
-            desc: "Identified vital script resources loaded over remote Content Delivery Networks (CDNs) missing accompanying cryptographic verification parameters (SRI hashes). This oversight leaves the ecosystem exposed to third-party script exploitation and supply-chain tampering routes.\n\nClick the evidence screenshot snippet below to view it at full scale.",
-            proofImg: "sshot3.jpg",
-            linkText: "Open Verified Disclosure Report (PDF) →",
-            url: "pdf3.pdf"
+        contrib3: {
+            title: "AWS SDK for Go v2: Multi-Region Initialization Hardening",
+            meta: "<span class='tech-badge'>Repository: aws/aws-sdk-go-v2</span>",
+            desc: "The Challenge:\nDuring service client initialization cycles, the SDK suffered from opaque error pathways when managing sophisticated, multi-region credential resolution matrices in fragmented enterprise infrastructure setups. These boot-up anomalies failed to provide adequate structural context to cleanly differentiate between network-layer routing limits and persistent cloud configuration errors, occasionally leading to sudden operational panics or silent runtime lockups.\n\nMy Solution & Engineering Impact:\nArchitected descriptive, nested error wrapping workflows directly into the service client boot-up cycle. By implementing defensive state validation checks before complete client instantiation steps occur, the patch successfully transitions the pipeline execution strategy from a raw 'fail-fast-on-panic' model to a resilient 'fail-gracefully-with-context' state. This contribution provides structured feedback loop mechanics that dramatically decrease infrastructure debugging windows, allowing developers to track and rectify credential mismatches during the early development stage rather than at production runtime.",
+            linkText: "View Merged Pull Request #3454 on GitHub →",
+            url: "https://github.com/aws/aws-sdk-go-v2/pull/3454"
         }
     };
 
@@ -664,7 +672,7 @@
         }
     });
 
-    // Main Modal Controller (Projects & Vulnerabilities)
+    // Main Modal Controller (Projects & Contributions)
     function openDetailsModal(id, type) {
         modalBox.classList.remove('skill-size'); // Reset to standard size
         const record = informationRegistry[id];
